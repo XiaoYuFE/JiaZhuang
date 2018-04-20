@@ -1,0 +1,61 @@
+<div class="zsjs-order-dialog clear" id="J_zsjs-order-dialog">
+	<div class="zsjs-order-aside">
+		<div class="avatar"><img src="./upload/sjs_avatar_1.jpg"  class="avatar-pic" /></div>
+		<p class="cname">周孝安设计事务所</p>
+		<p class="prices">设计费用：200-300元/㎡</p>
+		<div class="qrcode">
+			<div class="pic"><img src="./img/shejishi/jiaju_qrcode.jpg" /></div>
+			<p class="txt">关注小鱼家居</p>
+		</div>
+	</div>
+	<div class="zsjs-order-form">
+		<p class="caption">预约咨询</p>
+		<p class="cue">请留下您的相关信息，设计师会主动联系您</p>
+		<form action="#" method="post" id="J_orderform">
+			<div class="para-item">
+				<label class="para-tit">联系人</label>
+				<input type="text" class="ipt-text" data-required="true" data-descriptions="uername" />
+			</div>
+			<div class="para-item">
+				<label class="para-tit">手机号码</label>
+				<input type="text" class="ipt-text" data-pattern="^0?1[3|4|5|8][0-9]\d{8}$" data-required="true" data-descriptions="phone" />
+			</div>
+			<div class="para-item">
+				<div class="dropdown-box" data-roler="dropdown">
+                     <cite>项目类型</cite>
+                     <i class="arrow"></i>
+                     <ul>
+                         <li><a href="#" selid="1">项目1111111111111111111111111111111111111111111111111</a></li>
+                         <li><a href="#" selid="2">项目222222</a></li>
+                         <li><a href="#" selid="3">项目333333</a></li>
+                         <li><a href="#" selid="4">项目444444</a></li>
+                         <li><a href="#" selid="5">项目555555</a></li>
+                         <li><a href="#" selid="6">项目666666</a></li>
+                         <li><a href="#" selid="7">项目777777</a></li>
+                         <li><a href="#" selid="8">项目888888</a></li>
+                     </ul>
+                     <input type="hidden" id="J_dropselhidden" data-required="true" data-descriptions="projects">
+                </div>
+			</div>
+			<div class="para-item unit-item">
+				<label class="para-tit">项目面积</label>
+				<input type="text" class="ipt-text" data-required="true" data-descriptions="promj" data-pattern="^^\d+(\.\d+)?$" />
+				<b class="unit">㎡</b>
+			</div>
+			<div class="para-item">
+				<label class="para-tit">小区名称(选填)</label>
+				<input type="text" class="ipt-text" />
+			</div>
+			<input type="submit" class="ipt-submit" value="立即提交" />
+		</form>
+		<p class="promise-tip">我们承诺：为了您的利益以及我们的口碑，您的隐私我们将严格保密，请放下填写。</p>
+	</div>
+    <div class="zsjs-order-success">
+            <span class="tip">预约成功</span>
+            <p class="txt">感谢您的支持与信任，我会在看到预约后第一时间与您联系</p>
+    </div>
+    <a href="javascript:void(0)" class="closeBtn"></a>
+</div>
+<script src="js/layer/layer.js"></script>
+<script src="js/jquery-mvalidate.js"></script>
+<script src="js/orderform.js"></script>

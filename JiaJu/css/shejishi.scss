@@ -1,0 +1,1946 @@
+.footer {
+    margin-top: 0;
+}
+
+
+
+/**
+ * 网站共用
+ */
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+.bgfff{
+	background:#fff;
+}
+.zsjs-bg {
+    background: #f3f3f3;
+}
+
+a {
+    color: #333;
+    &:hover {
+        color: #28ab00;
+    }
+}
+/**
+ * 
+ */
+.zsjs-nodata{
+    padding:120px 0;
+    .pic{
+        width:64px;
+        height:88px;
+        overflow: hidden;
+        background:url("../img/shejishi/comment_nodata.png") no-repeat;
+        margin:0 auto;
+        display:block;
+    }
+    p{
+        text-align:center;
+        color:#666666;
+        margin-top:20px;
+    }
+}
+.sjs-btn {
+    display: inline-block;
+    padding: 4px 25px;
+    font-size: 16px;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #fff;
+    &.btn-success {
+        background: #28ab00;
+        &:hover {
+            background-color: darken(#28ab00, 2%);
+            color: #fff;
+        }
+    }
+}
+
+%text-overflow {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.zsjs-ad-t1 {
+    img {
+        max-width: 100%;
+    }
+}
+
+
+/**
+ * 设计师预约公用弹出框
+ */
+
+.zsjs-order-dialog {
+    display:none;
+    width: 580px;
+    height: 500px;
+    background: #fff;
+    .closeBtn{
+        width:16px;
+        height:16px;
+        position:absolute;
+        right:20px;
+        top:20px;
+        overflow:hidden;
+        background:url("../img/shejishi/zsjs_order.png") no-repeat 0 0;
+        &:hover{
+            background-position:0 -16px;
+        }
+    }
+}
+
+.zsjs-order-aside {
+    width: 200px;
+    float: left;
+    padding: 0 10px;
+    overflow: hidden;
+    height: 100%;
+    background: #222222;
+    color: #fff;
+    position: relative;
+    .avatar {
+        width: 80px;
+        height: 80px;
+        margin: 38px auto 0;
+        overflow: hidden;
+        img {
+            max-width: 100%;
+        }
+    }
+    .cname {
+        text-align: center;
+        font-size: 14px;
+        margin-top: 20px;
+        @extend %text-overflow;
+    }
+    .prices {
+        text-align: center;
+        margin-top: 8px;
+        @extend %text-overflow;
+    }
+    .qrcode {
+        position: absolute;
+        left: 50%;
+        margin-left: -40px;
+        bottom: 30px;
+        .pic {
+            width: 80px;
+            height: 80px;
+            overflow: hidden;
+            margin: 0 auto;
+            img {
+                max-width: 100%;
+            }
+        }
+        .txt {
+            text-align: center;
+            font-size: 14px;
+            margin-top: 7px;
+        }
+    }
+}
+
+.zsjs-order-form{
+    width: 300px;
+    padding:35px 30px 0;
+    float: right;
+    overflow: hidden;
+    .caption{
+    	color:#666666;
+    	font-size:16px;
+    	margin-bottom:10px;
+    }
+    .cue {
+    	color:#333333;
+    	margin-bottom:20px;
+    }
+    .para-item{
+    	position:relative;
+    	margin-bottom:10px;
+    }
+    .unit-item{
+    	.ipt-text{
+    		padding-right:19px;
+    		width:270px
+    	}
+    }
+    .unit{
+    	position:absolute;
+    	right:0;
+    	top:50%;
+    	color:#333;
+    	height:20px;
+    	line-height:20px;
+    	margin-top:-12px;
+    	right:5px;
+    }
+    .para-tit{
+		position:absolute;
+		line-height:36px;
+		padding:0 10px;
+		color:#999999;
+		width:280px;
+        cursor:text;
+
+    }
+    .ipt-text{
+    	border:1px solid #dddddd;
+    	height:20px;
+    	line-height:20px;
+    	padding:7px 9px;
+    	border-radius:4px;
+    	width:280px
+    }
+    .ipt-submit{
+    	    display:block;
+		    height:40px;
+		    width:100%;
+		    line-height:40px;
+		    font-size: 14px;
+		    text-align: center;
+		    border-radius: 4px;
+		    color: #fff;
+		    background:#28ab00;
+		    cursor:pointer;
+		    &:hover {
+                background-color: darken(#28ab00, 2%);
+            }
+            &.disabled{
+                background-color:#c7c6c6;
+            }
+    }
+    .promise-tip{
+    	margin-top:15px;
+    	background:url("../img/shejishi/zsjs_order.png") no-repeat -25px 3px;
+    	padding-left:20px;
+    	color:#999;
+    }
+    
+    .dropdown-box{
+        position:relative;
+        z-index:10;
+        &.active{
+            .arrow{
+                background-position:0 -38px;
+            }
+        }
+        .arrow{
+            width:12px;
+            height:6px;
+            position:absolute;
+            right:9px;
+            top:50%;
+            margin-top:-3px;
+            background:url("../img/shejishi/zsjs_order.png") no-repeat 0 -32px;
+        }
+        >cite{
+            line-height:36px;
+            padding:0 19px 0 9px;
+            color:#999999;
+            width:268px;
+            cursor:text;
+            font-style:normal;
+            border:1px solid #dddddd;
+            display:block;
+            border-radius: 4px;
+            position:relative;
+            cursor:pointer;
+            @extend %text-overflow;
+            &.active{
+                color:#333;
+            }
+        }
+        >ul{
+            border:1px solid #dddddd;
+            border-top:none;
+            position:absolute;
+            display:none;
+            left:0;
+            top:35px;
+            width:296px;
+            background:#fff;
+            border-radius:0 0 4px 4px;
+            max-height:180px;
+            overflow:scroll;
+            &::-webkit-scrollbar {width: 6px;height:6px;}
+            &::-webkit-scrollbar-track-piece{background-color: #eee;margin: -2px;}
+            &::-webkit-scrollbar-thumb{background: #aaa;min-height: 150px;min-width: 150px;border-radius: 10px;}
+            &::-webkit-scrollbar-thumb:vertical:hover{background: #555555}
+            &::-webkit-scrollbar-thumb:horizontal:hover{background: #555555}
+            li{
+                border-top:1px solid #dddddd;
+                a{
+                    padding-left:10px;
+                    font-size:14px;
+                    height:35px;
+                    line-height:35px;
+                    @extend %text-overflow;
+                    overflow:hidden;
+                    display:block;
+                }
+            }
+        }
+    }
+}
+
+.zsjs-order-success{
+    display:none;
+    width:185px;
+    text-align:center;
+    float:left;
+    margin:115px 0 0 90px;
+    .tip{
+        
+        line-height:36px;
+        height:36px;
+        display:inline-block;
+        background:url("../img/shejishi/zsjs_order.png") no-repeat 0 -50px;
+        padding-left:51px;
+        font-size:24px;
+        white-space:nowrap;
+        color:#28ab00;
+    }
+    .txt{
+        margin-top:30px;
+        color:#999999;
+        font-size:14px;
+    }
+}
+
+
+/********* 找设计师首页**********/
+
+.zsjs-index-main {
+    width: 800px;
+    float: left;
+    overflow: hidden;
+}
+
+.zsjs-index-aside {
+    width: 242px;
+    float: right;
+    margin-top: 20px;
+    overflow: hidden;
+    border: 1px solid #dddddd;
+    padding: 6px 18px 18px;
+    background: #ffffff;
+    .soma-hd {
+        font-size: 14px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: 1px solid #dddddd;
+        color: #000000;
+        .tit {
+            font-weight: bold;
+            float: left;
+        }
+        .more {
+            float: right;
+        }
+    }
+    .soma-bd-scroll{
+        margin-top:20px;
+        height:560px;
+        overflow:hidden;
+        position:relative;
+        
+    }
+    .soma-bd {
+        position:relative;
+        li {
+            border: 1px solid #dddddd;
+            margin-bottom: 10px;
+            position: relative;
+            overflow: hidden;
+            float:left;
+            &:hover {
+                .mask {
+                    top: 0;
+                    opacity: 1;
+                    visibility: visible;
+                }
+            }
+            .pic {
+                width: 240px;
+                height: 100px;
+                overflow: hidden;
+                img {
+                    max-width: 100%;
+                }
+            }
+            .mask {
+                position: absolute;
+                left: 0;         
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.8);
+                filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#66000000, endColorstr=#66000000);
+                text-align: center;  
+                top: 100%;
+                visibility: hidden;
+                opacity: 0;
+                transition: all 0.30s ease-out;
+                p {
+                    font-size: 16px;
+                    color: #fff;
+                    padding: 0 25px;
+                    @extend %text-overflow;
+                    margin-top: 23px;
+                }
+                a {
+                    display: inline-block;
+                    height: 20px;
+                    line-height: 20px;
+                    border-radius: 20px;
+                    background: #28ab00;
+                    padding: 0 10px;
+                    color: #fff;
+                    margin-top: 5px;
+                    &:hover {
+                        background-color: darken(#28ab00, 2%);
+                    }
+                }
+            }
+        }
+    }
+    >.more {
+        width: 100%;
+        padding: 5px 0;
+        font-size: 14px;
+        margin-top: 10px;
+    }
+}
+
+
+/**
+ * 首页——分类标签查询
+ */
+
+.zsjs-sort-box {
+    border: 1px solid #e4e4e4;
+    margin-top: 20px;
+    background: #fff;
+    .sort-item {
+        border-bottom: 1px solid #e4e4e4;
+        padding: 10px 10px 10px 100px;
+        position: relative;
+        .tit {
+            font-size: 16px;
+            line-height: 34px;
+            color: #333333;
+            text-align: right;
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 95px;
+            padding-right: 5px;
+            font-weight: bold;
+        }
+        .txt {
+            a {
+                font-size: 14px;
+                line-height: 36px;
+                margin: 0 10px;
+                white-space: nowrap;
+                &.active {
+                    color: #28ab00;
+                }
+            }
+        }
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+}
+
+
+/**
+ * 首页——大牌设计列表
+ */
+
+.zsjs-designers-box {}
+
+.zsjs-designers-hd {
+    border-bottom: 1px solid #cccccc;
+    margin-top: 20px;
+    .tit {
+        float: left;
+        font-size: 20px;
+        color: #349816;
+        line-height: 36px;
+        border-bottom: 2px solid #28ab00;
+        padding: 2px 10px 0;
+        position: relative;
+        margin-bottom: -1px;
+        display: inline;
+    }
+    .num {
+        color: #999999;
+        float: left;
+        line-height: 40px;
+        font-size: 14px;
+        margin-left: 20px;
+        display: inline;
+    }
+    .pages-dir {
+        float: right;
+        font-size: 13px;
+        color: #999999;
+        line-height: 18px;
+        margin-top: 11px;
+        .count {
+            vertical-align: middle;
+            padding: 0 5px;
+        }
+        a {
+            background-image: url("../img/shejishi/zsjs_icons.png");
+            background-repeat: no-repeat;
+            width: 26px;
+            height: 18px;
+            display: inline-block;
+            overflow: hidden;
+            vertical-align: middle;
+            &.dirl {
+                background-position: 0 0;
+            }
+            &.dirr {
+                background-position: 0 -18px;
+            }
+        }
+    }
+}
+
+.zsjs-designers-list {
+    padding-bottom: 40px;
+    li {
+        position: relative;
+        padding: 20px;
+        border: 1px solid #ddd;
+        overflow: hidden;
+        background: #fff;
+        margin-top: 20px;
+        &.recommend {
+            border-color: #efb8a2;
+            .icon-recommend {
+                width: 38px;
+                height: 38px;
+                position: absolute;
+                left: 0;
+                top: 0;
+                background: url("../img/shejishi/zsjs_icons.png") no-repeat 0 -36px;
+            }
+        }
+        .up-area {
+            min-height: 120px;
+            position: relative
+        }
+        .avatar {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            text-align: center;
+            float: left;
+            margin-right: 20px;
+            img {
+                max-width: 100%;
+                vertical-align: middle;
+            }
+        }
+        .prices {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            span {
+                color: #f25618;
+                font-size: 20px;
+            }
+            b {
+                color: #666666;
+                font-size: 12px;
+            }
+        }
+        .tags {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            a {
+                border: 1px solid #dddddd;
+                border-radius: 3px;
+                line-height: 18px;
+                height: 18px;
+                display: inline-block;
+                padding: 0 10px;
+                margin-right: 5px;
+                margin-bottom: 10px;
+                &:hover{
+                    background:#28ab00;
+                    border-color:#28ab00;
+                    color:#fff;
+                }
+            }
+        }
+        .cname {
+            font-size: 18px;
+            color: #000000;
+            padding-right: 180px;
+        }
+        .address {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            height: 14px;
+            line-height: 14px;
+            padding-left: 18px;
+            background: url("../img/shejishi/zsjs_icons.png") no-repeat 0 -90px;
+        }
+        .works-box {
+            clear: both;
+            margin-top: 20px;
+            border-top: 1px solid #dddddd;
+        }
+        .works-hd {
+            color: #666666;
+            font-size: 14px;
+            padding: 17px 0 10px;
+            span {
+                float: left;
+                b {
+                    margin-left: 10px;
+                    font-weight: normal;
+                }
+            }
+            .more {
+                float: right;
+            }
+        }
+        .works-bd {
+            width: 780px;
+            a {
+                position: relative;
+                width: 240px;
+                height: 140px;
+                overflow: hidden;
+                float: left;
+                margin-right: 20px;
+                img{
+                    max-width: 100%;
+                }
+                .mask {
+                    position: absolute;
+                    left: 0;
+                    top: 0;
+                    width: 100%;
+                    height: 100%;
+                    background-color: rgba(0, 0, 0, 0.6);
+                    filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
+                    text-align: center;
+                     visibility: hidden;
+                    animation-duration: 0.20s;
+                animation-fill-mode: both;
+                    b {
+                        padding: 0 20px;
+                        border-bottom: 1px solid #fff;
+                        font-size: 18px;
+                        line-height: 30px;
+                        color: #fff;
+                        position: relative;
+                        display: inline-block;
+                        margin-top: 55px;
+                        font-weight: normal;
+                        max-width: 70%;
+                        @extend %text-overflow;
+                    }
+                }
+                &:hover{
+                    .mask{
+                        visibility:visible;
+                        animation-name: zoomIn;                    
+                    }
+                }
+            }
+        }
+    }
+}
+
+/***************大牌商家页面****************/
+
+/**
+ * 大牌商家-分类选项
+ */
+.zsjs-sj-main{
+	float:left;
+	width:750px;
+	overflow:hidden;
+}
+
+.zsjs-sj-sort{
+	background:#ffffff;
+	border:1px solid #e4e4e4;
+	.sort-item{
+		position:relative;
+		font-size:14px;
+		padding-left:119px;
+		.tit{
+			position:absolute;
+			background:#f9f9f9;
+			width:118px;
+			left:0;
+			top:0;
+			bottom:0;
+			line-height:26px;
+			text-align:right;
+			padding-top:14px;
+			span{
+				padding-right:30px;
+				// padding:10px 30px 10px 0;
+			}
+		}
+		.txt{
+			border-left:1px solid #e4e4e4;
+			padding:14px 20px;
+			line-height:26px;
+			a{
+				margin-right:10px;
+				white-space:nowrap;
+				&.active{
+					color:#28ab00;
+				}
+			}
+		}
+	}
+}
+/**
+ * 商家列表
+ */
+.zsjs-sj-list{
+	background:#ffffff;
+	border:1px solid #e4e4e4;
+	margin-top:20px;
+	.soma-hd{
+		font-size:18px;
+		color:#28ab00;
+		height:48px;
+		line-height:48px;
+		padding:0 20px;
+		border-bottom:1px solid #e4e4e4;
+	}
+	.soma-bd{
+		padding:0 20px 20px;
+		li{
+			border-bottom:1px solid #e4e4e4;
+			min-height:128px;
+			padding:20px 125px 20px 0;
+			position:relative;
+		}
+		.btn-more{
+			width:110px;
+			height:32px;
+			line-height:32px;
+			border:1px solid #e4e4e4;
+			background:#f9f9f9;
+			position:absolute;
+			right:0;
+			top:50%;
+			margin-top:-16px;
+			text-align:center;
+			color:#333333;
+			font-size:16px;
+			&:hover{
+				background:darken(#f9f9f9,2%);
+			}
+		}
+		.pic{
+			width:170px;
+			height:126px;
+			overflow:hidden;
+			border:1px solid #e4e4e4;
+			float:left;
+			margin-right:10px;
+            img{
+                max-width: 100%;
+            }
+		}
+		.cname{
+			font-size:16px;
+			color:#333333;
+			overflow:hidden;
+			white-space:nowrap;
+		}
+		.intro{
+			font-size:12px;
+			color:#999;
+			line-height:18px;
+			margin-top:8px;
+			height:36px;
+			overflow:hidden;
+		}
+		.phone{
+			color:#666666;
+			margin-top: 8px;
+			b{
+				color:#f25618;
+				font-weight:normal;
+			}
+		}
+		.address{
+			margin-top:8px;
+			color: #666666;
+		}
+	}
+	
+}
+
+/**
+ * 
+ */
+.zsjs-sj-aside{
+	float:right;
+	width:340px;
+	overflow:hidden;
+	.orange-btn{
+		&:hover{
+			color:#fff;
+		}
+	}
+}
+.zsjs-sj-hotactivity{
+	border:1px solid #e4e4e4;
+	margin-top:10px;
+	.soma-hd{
+		height:48px;
+		line-height:48px;
+		overflow:hidden;
+		padding:0 20px;
+		border-bottom:1px solid #e4e4e4;
+		.tit{
+			float:left;
+			font-size:18px;
+			color:#28ab00;
+		}
+		.more{
+			float:right;
+			font-size:14px;
+			color:#999999;
+			&:hover{
+				color:#28ab00;
+			}
+		}
+	}
+	.soma-bd{
+		padding:0 20px 20px;
+		li{
+			min-height:91px;
+			margin-top:20px;
+		}
+		.pic{
+			width:118px;
+			height:87px;
+			padding:1px;
+			border:1px solid #e4e4e4;
+			float:left;
+			margin-right:10px;
+			img{
+				max-width:100%;
+			}
+		}
+		.btn-add{
+			width:78px;
+			height:21px;
+			line-height:21px;
+			overflow:hidden;
+			background:#f9f9f9;
+			border:1px solid #e4e4e4;
+			display:block;
+			text-align:center;
+			font-size:14px;
+			color:#333333;
+			margin-top:3px;
+			&:hover{
+				color:#333;
+				background:darken(#f9f9f9,2%)
+			}
+		}
+		.name{
+			color:#333333;
+			line-height:21px;
+			height:42px;
+			overflow:hidden;
+			font-size:14px;
+            &:hover{
+                color:#28ab00;
+            }
+		}
+		.time{
+			color:#999999;
+			margin-top:2px;
+		}
+	}
+}
+
+/***********设计师作品列表和信息介绍详情****************/
+.zsjs-avatar-box{
+	background:url("../img/shejishi/sjs_detail_avatar_bg.jpg") no-repeat left top;
+	height:298px;
+	border:1px solid #dddddd;
+    position:relative;
+	.avatar{
+		width:80px;
+		height:80px;
+		margin: 30px auto 0;
+		border-radius:100%;
+		overflow:hidden;
+		img{
+			max-width:100%;
+		}
+	}
+    .address{
+            position: absolute;
+            right:30px;
+            top:30px;
+            height: 14px;
+            line-height: 14px;
+            padding-left: 18px;
+            color:#666666;
+            background: url(../img/shejishi/zsjs_icons.png) no-repeat 0 -90px;
+    }
+	.cname{
+		color:#000;
+		font-size:18px;
+		text-align:center;
+		padding:0 20px;
+		margin-top:15px;
+	}
+	.ctags{
+		margin-top:18px;
+		padding:0 20px;
+		text-align:center;
+		a{
+			display:inline-block;
+			height:18px;
+			line-height:18px;
+			border:1px solid #dddddd;
+			padding:0 10px;
+			border-radius:2px;
+			min-width: 49px;
+			text-align:center;
+		}
+	}
+	.blend-py{
+		text-align:center;
+		margin-top:40px;
+		
+		.price{
+			font-size:12px;
+			color:#666666;
+			margin-right:20px;
+            line-height:35px;
+            display:inline-block;
+            vertical-align:middle;
+			b{
+				color:#f25618;
+				font-weight:bold;
+				font-size:20px;
+				font-weight:normal;
+				margin-right:5px;
+                
+			}
+		}
+	}
+}
+.zsjs-sjs-tab1{
+	text-align:center;
+    background:#fff;
+    border-left:1px solid #dddddd;
+    border-right:1px solid #dddddd;
+    border-bottom:1px solid #dddddd;
+	a{
+		text-align:center;
+		color:#333333;
+		font-size:14px;
+		width:300px;
+		display:inline-block;
+		height:43px;
+		line-height:43px;
+        padding-bottom:2px;
+        position:relative;
+        margin-bottom:-1px;
+        &.active,&:hover{
+            border-bottom:2px solid #28ab00;
+        }
+	}
+}
+.zsjs-sjs-opus{
+    margin-top:30px;
+    .sort-item{
+        a{
+            display:inline-block;
+            height:28px;
+            line-height:28px;
+            padding:0 10px;
+            font-size:14px;
+            border-radius:3px;
+            margin-right:10px;
+            &:hover{
+               background:#28ab00;
+                color:#fff;
+            }
+            &.active{
+                 background:#28ab00;
+                  color:#fff;
+            }
+        }
+    }
+    
+}
+.zsjs-sjs-opus-list{
+    width:1120px;
+    padding-top:5px;
+    padding-bottom:40px;
+    li{
+        border:1px solid #dddddd;
+        float:left;
+        width:258px;
+        margin-right:20px;
+        margin-top:20px;
+        background:#fff;
+        .pic{
+            position: relative;
+            width: 240px;
+            height: 140px;
+            margin:9px auto 0;
+            display:block;
+            overflow: hidden;
+            .mask {
+                animation-duration: 0.20s;
+                animation-fill-mode: both;
+                position: absolute;
+                left: 0;
+                top: 0;
+                visibility:hidden;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.6);
+                filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
+                text-align: center;
+                b {
+                    padding: 0 20px;
+                    border-bottom: 1px solid #fff;
+                    font-size: 18px;
+                    line-height: 30px;
+                    color: #fff;
+                    position: relative;
+                    display: inline-block;
+                    margin-top: 55px;
+                    font-weight: normal;
+                    max-width: 70%;
+                    @extend %text-overflow;
+                }
+            }
+            &:hover{
+                .mask{
+                    visibility:visible;
+                    animation-name: zoomIn;                    
+                }
+
+            }
+        }
+        .tit{
+            color:#222222;
+            font-size:14px;
+            margin:0 9px;
+            display:block;
+            margin-top:10px;
+            @extend %text-overflow;
+            &:hover{
+                color:#28ab00;
+            }
+        }
+        .pag{
+            color:#666666;
+            padding:0 10px;
+            margin-top:2px;
+            span,b{
+                float:left;
+                display:inline-block;
+                max-width:104px;
+                @extend %text-overflow;
+                font-weight:normal;
+               
+            }
+            span{
+                 padding-right:10px;
+            }
+            b{
+                padding-left:10px;
+            }
+           
+        }
+        .para{
+            padding:10px 9px 15px;
+            >span{
+                background:url("../img/shejishi/sjs_opus.png") no-repeat;
+                height:20px;
+                line-height:20px;
+                padding-left:20px;
+                color:#666666;
+                margin-right:23px;
+                &.skim{
+                    background-position:0 4px;
+                }
+                &.comment{
+                    background-position:0 -16px;
+                }
+                &.assist{
+                    background-position:0 -38px;
+                }
+            }
+        }
+        .cname{
+            border-top:1px solid #dddddd;
+            height:42px;
+            line-height:42px;
+            position:relative;
+            padding:0 70px 0 9px;
+            p{
+                color:#333333;
+                @extend %text-overflow;
+            }
+            .time{
+                position:absolute;
+                right:9px;
+                top:0;
+                color:#999999;
+            }
+        }
+
+    }
+}
+.zsjs-sjs-intro{
+    border:1px solid #dddddd;
+    padding:30px 47px 20px;
+    margin-top:20px;
+    color:#333333;
+    font-size:14px;
+    background:#fff;
+    display:none;
+   .slogan{
+     margin-bottom:22px;
+   }
+   .item-intro{
+        border:1px solid #dddddd;
+        background:#f4f4f4;
+        padding:18px 0 25px;
+        margin-bottom:20px;
+        .caption{
+            height:24px;
+            line-height:24px;
+            border-left:4px solid #28ab00;
+            padding-left:8px;
+            font-size:16px;
+            position:relative;
+            margin-left:-1px;
+            margin-bottom:15px;
+        }
+        .intro-txt{
+            padding:0 20px;
+            line-height:30px;
+        }
+   }
+}
+
+
+/**************产品详情页*******************/
+.zsjs-pro-main{
+    float:left;
+    width:820px;
+    overflow:hidden;
+    padding-bottom: 25px;
+    .seat-box{
+        background:#ffffff;
+        border:1px solid #dddddd;
+        background:#fff;
+        padding:0 29px;
+    }
+    .caption-bar{
+        h1{
+            font-size:20px;
+            color:#333333;
+            font-weight:normal;
+            margin-top:25px;
+            margin-bottom:5px;
+        }
+        .time{
+            font-size:14px;
+            float:left;
+            color:#999;
+        }
+        .para{
+            float:right;
+            >span{
+                background:url("../img/shejishi/sjs_opus.png") no-repeat;
+                height:20px;
+                line-height:20px;
+                padding-left:20px;
+                color:#666666;
+                margin-left:23px;
+                &.skim{
+                    background-position:0 4px;
+                }
+                &.comment{
+                    background-position:0 -16px;
+                }
+                &.assist{
+                    background-position:0 -38px;
+                }
+            }
+        }
+        .marks{
+            width:16px;
+            height:31px;
+            overflow:hidden;
+            background:url("../img/shejishi/sjs_pro_detail_icon.png") no-repeat;
+            position:absolute;
+            &.marks-lf{
+                background-position:0 0;
+                top:5px;
+                left:20px;
+            }
+            &.marks-rt{
+                background-position:0 -31px;
+                bottom:5px;
+                right:20px;
+            }
+        }
+        .intro{
+            background:#f7f7f7;
+            position:relative;
+            margin-top:23px;
+            .txt{
+                padding:20px 45px;
+                font-size:14px;
+                line-height:20px;
+                color:#333333;
+                span{
+                    margin:0 7px; 
+                }
+
+            }
+        }
+    }
+    /**
+     * 点赞
+     */
+    .fabulous{
+        width:60px;
+        height:28px;
+        line-height:28px;
+        display:block;
+        margin:30px auto 0;
+        border:1px solid #bbbbbb;
+        border-radius:5px;
+        color:#666666;
+        text-align:center;
+        b{
+            width:13px;
+            height:12px;
+            display:inline-block;
+            background:url("../img/shejishi/sjs_opus.png") no-repeat 0 -40px;
+            margin-right:5px;
+           
+        }
+        &:hover{
+            border-color:#28ab00;
+            background-color:#28ab00;
+            color:#fff;
+            b{
+                background-position:0 -60px;
+            }
+        }
+        &.pass{
+            background:#aaaaaa;
+            border-color:#aaaaaa;
+            color:#fff;
+            b{
+                background-position:0 -60px;
+            }
+        }
+    }
+
+
+    .other-pro{
+        border-top:1px solid #dddddd;
+        margin-top:40px;
+        padding-top:15px;
+        padding-bottom:18px;
+        .caption{
+            font-size:14px;
+            color:#333;
+            margin-bottom:15px;
+        }
+        .list{
+            width:780px;
+            li{
+                float:left;
+                width:240px;
+                margin-right:20px;
+                background:#fff;
+                .pic{
+                    position: relative;
+                    width: 240px;
+                    height: 140px;
+                    line-height:140px;
+                    margin:0 auto;
+                    display:block;
+                    text-align:center;
+                    overflow: hidden;
+                    img{
+                        max-width:100%;
+                        vertical-align:middle;
+                    }
+                    .mask {
+                        animation-duration: 0.20s;
+                        animation-fill-mode: both;
+                        position: absolute;
+                        left: 0;
+                        top: 0;
+                        visibility:hidden;
+                        width: 100%;
+                        height: 100%;
+                        background-color: rgba(0, 0, 0, 0.6);
+                        filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#88000000, endColorstr=#88000000);
+                        text-align: center;
+                        b {
+                            padding: 0 20px;
+                            border-bottom: 1px solid #fff;
+                            font-size: 18px;
+                            line-height: 30px;
+                            color: #fff;
+                            position: relative;
+                            display: inline-block;
+                            margin-top: 55px;
+                            font-weight: normal;
+                            max-width: 70%;
+                            @extend %text-overflow;
+                        }
+                    }
+                    &:hover{
+                        .mask{
+                            visibility:visible;
+                            animation-name: zoomIn;                    
+                        }
+
+                    }
+                }
+                .tit{
+                    color:#222222;
+                    font-size:14px;
+                    display:block;
+                    margin-top:10px;
+                    @extend %text-overflow;
+                    &:hover{
+                        color:#28ab00;
+                    }
+                }
+                .pag{
+                    color:#666666;
+                    margin-top:3px;
+                    span,b{
+                        float:left;
+                        display:inline-block;
+                        max-width:104px;
+                        @extend %text-overflow;
+                        font-weight:normal;
+                       
+                    }
+                    span{
+                         padding-right:10px;
+                    }
+                    b{
+                        padding-left:10px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//帖子模式
+.postpic-tzms{
+    color:#333333;
+    font-size:14px;
+    margin-top:20px;
+    img{
+        max-width:100%;
+    }
+}
+//
+.postpic-tpms-wrap{
+    display:none;
+    margin-top:20px;
+}
+.postpic-tpms{
+    ul{
+        li{
+            text-align:center;
+            width:100%;
+            line-height:400px;
+            img{
+                max-width:100%;
+                max-height:100%;
+                vertical-align:middle;
+                display:inline-block;
+            }
+        }
+    }
+    .check-big{
+        width: 70px;
+        height: 28px;
+        line-height: 28px;
+        border-radius:5px;
+        position:absolute;
+        right:20px;
+        top:20px;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        z-index: 15;
+        display:none;
+        background-color: rgba(0, 0, 0, 0.8);
+        filter:progid:DXImageTransform.Microsoft.Gradient(startColorstr=#66000000, endColorstr=#66000000);
+    }
+    .dir-btn{
+        background:url("../img/shejishi/postpic_icon.png") no-repeat;
+        position: absolute; 
+        top:50%;
+        width:40px;
+        height:80px;
+        margin-top:-40px;
+        &.banner-ui-prev{
+            background-position:0 0;
+            left:0;
+            &:hover{
+                 background-position:0 -160px;
+            }
+        }
+        &.banner-ui-next{
+            background-position:0 -80px;
+            right:0;
+            &:hover{
+                 background-position:0 -240px;
+            }
+        }
+    }
+}
+.banner-numlist-wrap{
+    position:relative;
+    padding-left:45px;
+    margin-top:10px;
+    padding-top:5px;
+    .num{
+        font-size:14px;
+        color:#333333;
+        position:absolute;
+        left:0;
+        top:0;
+        b{
+            color:#28ab00;
+            font-size:24px;
+            font-weight:normal;
+        }
+    }
+    .banner-numlist{
+        font-size:14px;
+        li{
+            display:none;
+            line-height:25px;
+            min-height:50px;
+            &.oncurr{
+                display:block;
+            }
+        }
+    }
+}
+
+/**
+ * 评论框
+ */
+.comments-caption{
+    height:38px;
+    line-height:38px;
+    border-bottom:2px solid #28ab00;
+    margin-top:12px;
+    .tit{
+        font-size:18px;
+        font-weight:bold;
+        margin-right:10px;
+    }
+    .count{
+        color:#999;
+    }
+}
+
+.comments-form{
+    position:relative;
+    padding-left:70px;
+    .avatar{
+        width:50px;
+        height:50px;
+        overflow:hidden;
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    .form-area{
+        position:relative;
+        margin-top:20px;
+        .arrow{
+            width:11px;
+            height:11px;
+            background:url("../img/shejishi/comments_arrow.png") no-repeat;
+            position:absolute;
+            left:-10px;
+            top:11px;
+
+        }
+        textarea{
+            border:1px solid #cccccc;
+            padding:10px;
+            width:668px;
+            height:38px;
+        }
+        .lab{
+            position:absolute;
+            left:0;
+            top:0;
+            padding:10px;
+            width:668px;
+            color:#aaaaaa;
+            height:38px;
+            cursor:text;
+        }
+    }
+    .form-handle{
+        padding-top:6px;
+        .handle-l{
+            float:left;
+            color:#999999;
+            b{
+                font-weight:normal;
+                color:#28ab00;
+            }
+            a{
+                color:#28ab00;
+                &:hover{
+                    text-decoration:underline;
+                }
+            }
+        }
+        .handle-r{
+            float:right;
+            .byte{
+                color:#999999;
+                margin-right:20px;
+                b{
+                    font-weight:normal;
+                }
+            }
+            .ipt-submit{
+                width:69px;
+                height:28px;
+                background:#28ab00;
+                border-radius:3px;
+                color:#fff;
+                cursor:pointer;
+                &:hover{
+                    background:darken(#28ab00,2%);
+                }
+            }
+
+        }
+    }
+}
+
+
+.comments-box{
+    padding-bottom: 20px;
+}
+.comments-details{
+    margin-top:15px;
+    .caption{
+        height:33px;
+        line-height:33px;
+        overflow:hidden;
+        border-bottom:1px solid #dddddd;
+        color:#000000;
+    }
+}
+.comments-list{
+    padding-bottom: 15px;
+    li{
+        position:relative;
+        padding:20px 0 20px 70px;
+        border-bottom:1px dashed #dddddd;
+        &:last-child{
+            border-bottom:none;
+        }
+        .time{
+            color:#aaaaaa;
+        }
+        .con-txt{
+            font-size:14px;
+        }
+        .name{
+            font-size:14px;
+            margin-bottom:3px;
+            color:#777777;
+        }
+
+    }
+    .avatar{
+        width:50px;
+        height:50px;
+        position:absolute;
+        left:0;
+        top:20px;
+        overflow:hidden;
+        img{
+            max-width:100%;
+        }
+    }
+}
+.comments-reply{
+    position:relative;
+    margin-top:18px;
+    .arrow{
+        width:16px;
+        position:absolute;
+        right:6px;
+        top:-8px;
+        height:10px;
+        background:url("../img/shejishi/comments_reply_arrow.png") no-repeat;
+    }
+    .reply-form-wrap{
+        
+        border:1px solid #dddddd;
+    }
+    .reply-form-inner{
+         border:1px solid #fff;
+         background:#f3f3f3;
+         padding:13px 17px; 
+    }
+    .item-con{
+        border:1px solid #bbbbbb;
+        border-radius:3px;
+        background:#fff;
+        position:relative;
+        padding-right:10px;
+        padding-left: 120px;
+        .para-tit{
+            height:34px;
+            line-height:34px;
+            position:absolute;
+            left:0;
+            top:0;
+            max-width: 110px;
+            @extend %text-overflow;
+            padding-left:10px;
+        }
+        .reply-txt{
+             height:34px;
+            line-height:34px;
+            width:100%;
+
+        }
+    }
+    .item-handle{
+        text-align:right;
+        margin-top:18px;
+        .byte{
+            color:#999999;
+            margin-right:10px;
+            b{
+                font-weight:normal;
+            }
+        }
+    }
+    .ipt-submit{
+            width: 69px;
+            height: 28px;
+            background: #28ab00;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            border:none;
+            &:hover{
+                background:darken(#28ab00,2%);
+            }
+    }
+}
+.reply-result-box{
+    position:relative;
+    background:#f3f3f3;
+    border:1px solid #dddddd;
+    margin-top: 10px;
+    .arrow{
+        width:16px;
+        height:9px;
+        position:absolute;
+        left:30px;
+        top:-8px;
+        overflow:hidden;
+        background:url("../img/shejishi/comments_reply_arrow.png") no-repeat;
+    }
+    .txt{
+        padding: 8px 13px;
+        line-height: 23px;
+        font-size: 14px;
+    }
+    .rlname{
+        color:#777777;
+        padding-left: 13
+    }
+}
+
+
+
+.zsjs-pro-aside{
+    float:right;
+    overflow:hidden;
+    width:260px;
+    .seat-box{
+        border: 1px solid #dddddd;
+        background: #fff;
+        padding: 0 19px;
+    }
+    .avatar{
+        margin-top:19px;
+        .pic{
+            width:80px;
+            height:80px;
+            overflow:hidden;
+            float:left;
+            margin-right:14px;
+            img{
+                max-width:100%;
+            }
+        }
+        .name{
+            font-size:16px;
+        }
+    }
+    .charge-prices{
+        color:#666;
+        text-align:center;
+        margin-top:25px;
+        span{
+            color:#f25618;
+            font-size:20px;
+            margin-right:10px;
+        }
+    }
+    .seek-btn{
+        width:100%;
+        height: 34px;
+        line-height:34px;
+        background: #28ab00;
+        border-radius:4px;
+        color: #fff;
+        cursor: pointer;
+        display:block;
+        text-align:center;
+        font-size:16px;
+        margin-top:30px;
+        &:hover{
+            background:darken(#28ab00,2%);
+        }
+    }
+    .tel-phone{
+        margin-top:20px;
+        margin-bottom:50px;
+        width:100%;
+        height: 34px;
+        line-height:34px;
+        background: #ee8260;
+        border-radius:4px;
+        color: #fff;
+        cursor: pointer;
+        display:block;
+        text-align:center;
+        font-size:16px;
+        &:hover{
+            background:darken(#ee8260,2%);
+        }
+        span{
+            background:url("../img/shejishi/tel_phone_1.png")  no-repeat left center;
+            padding-left:15px;
+        }
+    }
+}
+
+/**
+ * 帖子和图文按钮
+ */
+.postxt-fixed-bar{
+    position:fixed;
+    left:50%;
+    top:500px;
+    margin-left:-660px;
+    a{
+        display:block;
+        width:98px;
+        height:40px;
+        line-height:40px;
+        text-align:center;
+        border-right:1px solid #aaa;
+        border-left:1px solid #aaa;
+        overflow:hidden;
+        background:#fff;
+        span{
+            background:url("../img/shejishi/sjs_words_detail_icon.png") no-repeat;
+            padding-left:20px;
+            display:inline-block;
+            height:16px;
+            line-height:16px;
+        }
+        &.item1{
+            border-top:1px solid #aaa;
+            span{
+                background-position:0 0;
+            }
+        }
+        &.item2{
+            border-bottom:1px solid #aaa;
+            span{
+                background-position:0 -32px;
+                padding-left:22px;
+            }
+        }
+        &:hover,&.active{
+            background:#28ab00;
+            color:#fff;
+            border-color:#28ab00;
+            span{
+
+            }
+            &.item1{
+                span{
+                background-position:0 -16px;
+                 }
+            }
+            &.item2{
+                span{
+                    background-position:0 -48px;
+                    
+                }
+            }
+        }
+    }
+}
+
+/**
+ * 表单验证样式
+ */
+.field-invalid {
+     border-color: #a94442;
+ }
+ 
+ .field-invalidmsg {
+     color: #a94442;
+ }
+ 
+ .field-validmsg {
+     color: #3c763d;
+ }
+ 
+ .field-tooltipWrap {
+     position: absolute;
+     left: 0;
+     top: 0;
+     width: 100%;
+     z-index:9999999999999;
+ }
+ 
+ .field-tooltipInner {
+     pointer-events: none;
+     display: table;
+     position: fixed;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+ }
+ 
+ .field-tooltip {
+     display: table-cell;
+     vertical-align: middle;
+     text-align: center;
+ }
+ 
+ .field-tooltip .field-invalidmsg,
+ .field-tooltip .field-validmsg {
+     color: #fff;
+ }
+ 
+ .field-tooltip .zvalid-resultformat {
+     display: inline-block;
+     position: relative;
+     background-color: rgba(0, 0, 0, 0.8);
+     color: #fff;
+     padding: 15px 25px;
+     font-size: 14px;
+     border-radius: 6px;
+     box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+     pointer-events: auto;
+     animation-name: fieldTipBounceIn;
+     -webkit-animation-name: fieldTipBounceIn;
+     -webkit-animation-fill-mode: both;
+     animation-fill-mode: both;
+     -webkit-animation-duration: .18s;
+     animation-duration: .18s;
+ }
+ 
+ @-webkit-keyframes fieldTipBounceIn {
+     0% {
+         opacity: 0;
+         -webkit-transform: scale3d(.3, .3, .3);
+         transform: scale3d(.3, .3, .3);
+     }
+     100% {
+         opacity: 1;
+         -webkit-transform: scale3d(1, 1, 1);
+         transform: scale3d(1, 1, 1);
+     }
+ }
+ 
+ @keyframes {
+     0% {
+         opacity: 0;
+         -webkit-transform: scale3d(.3, .3, .3);
+         transform: scale3d(.3, .3, .3);
+     }
+     100% {
+         opacity: 1;
+         -webkit-transform: scale3d(1, 1, 1);
+         transform: scale3d(1, 1, 1);
+     }
+}

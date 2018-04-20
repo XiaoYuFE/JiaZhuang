@@ -1,0 +1,656 @@
+    /*
+ * 公用的东西，修改请注意
+ */
+
+    .nav-sub-second {
+        box-shadow: 0 0px 10px #797878;
+        position: relative;
+        z-index: 1;
+        .list {
+            li {
+                float: left;
+                width: 33.33%;
+                a {
+                    display: block;
+                    height: 70px;
+                    line-height: 70px;
+                    color: #1a1a1a;
+                    text-align: center;
+                    span {
+                        display: inline-block;
+                        font-size: 20px;
+                    }
+                }
+
+                &.item-1 {
+                    a {
+                        span {
+                            background: url("../img/shejiyubaojia/icon_sjybj.png") no-repeat left center;
+                            padding-left: 35px;
+                        } // &:hover{
+                        //  span{
+                        //      background: url("../img/shejiyubaojia/icon_sjybj_h.png") no-repeat left center;
+                        //  }
+                        // }
+                    }
+                }
+                &.item-2 {
+                    a {
+                        span {
+                            background: url("../img/shejiyubaojia/icon_jbgz.png") no-repeat left center;
+                            padding-left: 37px;
+                        } // &:hover{
+                        //  span{
+                        //      background: url("../img/shejiyubaojia/icon_jbgz_h.png") no-repeat left center;
+                        //  }
+                        // }
+                    }
+                }
+                &.item-3 {
+                    a {
+                        span {
+                            padding-left: 38px;
+                            background: url("../img/shejiyubaojia/icon_yflf.png") no-repeat left center;
+                        } // &:hover{
+                        //  span{
+                        //      background: url("../img/shejiyubaojia/icon_yflf_h.png") no-repeat left center;
+                        //  }
+                        // }
+                    }
+                }
+                &.active {
+                    a {
+                        color: #fff;
+                    }
+                    &.item-1 {
+                        box-shadow: 0 5px 0px #30c060;
+                        a {
+                            background: #30c060;
+                            span {
+                                background: url("../img/shejiyubaojia/icon_sjybj_h.png") no-repeat left center;
+                            }
+                        }
+                    }
+                    &.item-2 {
+                        box-shadow: 0 15px 0px #0ec9c3;
+                        a {
+                            background: #0ec9c3;
+                            span {
+                                background: url("../img/shejiyubaojia/icon_jbgz_h.png") no-repeat left center;
+                            }
+                        }
+                    }
+                    &.item-3 {
+                        box-shadow: 0 15px 0px #c03030;
+                        a {
+                            background: #c03030;
+                            span {
+                                background: url("../img/shejiyubaojia/icon_yflf_h.png") no-repeat left center;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    .sjybj-banner {
+        height: 471px;
+        position: relative;
+        &.item-1 {
+            background: url("../img/shejiyubaojia/sjybj_banner.jpg") no-repeat top center;
+        }
+        &.item-2 {
+            background: url("../img/shejiyubaojia/jbgz_banner.jpg") no-repeat top center;
+        }
+        &.item-3 {
+            background: url("../img/shejiyubaojia/yflf_banner.jpg") no-repeat top center;
+        }
+    }
+
+    .bm-form-box {
+        background: #fff;
+        position: absolute;
+        left: 50%;
+        top: 60px;
+        width: 300px;
+        padding: 0 20px;
+        margin-left: 210px;
+        .reg-panel {
+            border: none;
+            height: 318px;
+            .reg-button {
+                margin-top: 16px;
+            }
+        }
+        .control-group {
+            font-size: 16px;
+        }
+
+        .c-mfbj-forms{
+            .txt-1{
+                color:#333333;
+            }
+        }
+    }
+
+    .tit-type-1 {
+        text-align: center;
+        .tit {
+            color: #333333;
+            font-size: 30px;
+        }
+        .line {
+            height: 3px;
+            width: 70px;
+            margin: 10px auto 0;
+            background: #ffaa00;
+        }
+    }
+
+
+    .sjybj-shenqr {
+        height: 836px;
+        background: url("../img/shejiyubaojia/sjybj_sxr.jpg") no-repeat top center;
+        padding-top: 50px;
+        &.no-bg {
+            background: none;
+        }
+        .shenqr-box {
+            border: 1px solid #e4e4e4;
+            background: #fff;
+            padding: 20px 20px 55px;
+            margin-top: 60px;
+            .more {
+                width: 344px;
+                height: 38px;
+                line-height: 38px;
+                text-align: center;
+                background: #27c27b;
+                display: block;
+                font-size: 18px;
+                border-radius: 5px;
+                color: #fff;
+                margin: 60px auto 0;
+                &:hover {
+                    background: darken(#27c27b, 5%)
+                }
+            }
+        } //1058-2=1056
+        .shenqr-thead {
+            height: 42px;
+            line-height: 42px;
+            background: #f9f9f9;
+            border: 1px solid #e4e4e4;
+            padding: 0 30px;
+            li {
+                float: left;
+                text-align: center;
+                color: #333333;
+            }
+        }
+        .shenqr-tbody {
+            padding: 0 31px;
+            li {
+                color: #666666;
+                height: 40px;
+                line-height: 40px;
+                &:nth-child(2n) {
+                    background: #f9f9f9;
+                }
+                span {
+                    float: left;
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+        .shenqr-col {
+
+            .item-1 {
+                width: 18%;
+            }
+            .item-2 {
+                width: 10%;
+            }
+            .item-3 {
+                width: 25%;
+            }
+            .item-4 {
+                width: 20%;
+            }
+            .item-5 {
+                width: 15%;
+            }
+            .item-6 {
+                width: 12%;
+            }
+        }
+    }
+    /*
+ * 公用的东西--------------end
+ */
+    /**
+ *设计与报价
+ */
+
+    .sjybj-fwlc {
+        padding-top: 50px;
+        padding-bottom: 55px;
+        .list {
+            margin-top: 60px;
+            li {
+                float: left;
+                width: 25%;
+                overflow: hidden;
+                .pic {
+                    width: 132px;
+                    height: 146px;
+                    overflow: hidden;
+                    margin: 0 auto;
+                    background-repeat: no-repeat;
+                    background-position: center center;
+                }
+                .txt {
+                    text-align: center;
+                    font-size: 20px;
+                    color: #282828;
+                    margin-top: 12px;
+                }
+                &.item-1 {
+                    .pic {
+                        background-image: url("../img/shejiyubaojia/sjybj_fwlc_1.png");
+                    }
+                }
+                &.item-2 {
+                    .pic {
+                        background-image: url("../img/shejiyubaojia/sjybj_fwlc_2.png");
+                    }
+                }
+                &.item-3 {
+                    .pic {
+                        background-image: url("../img/shejiyubaojia/sjybj_fwlc_3.png");
+                    }
+                }
+                &.item-4 {
+                    .pic {
+                        background-image: url("../img/shejiyubaojia/sjybj_fwlc_4.png");
+                    }
+                }
+            }
+        }
+    }
+
+    .sjybj-mtjd {
+        height: 634px;
+        padding-top: 45px;
+        background: url("../img/shejiyubaojia/sjybj_mtjd.jpg") no-repeat top center;
+        .item-1 {
+            width: 1003px;
+            height: 435px;
+            margin: 70px auto 0;
+            background: url("../img/shejiyubaojia/sjybj_mtjd_icon1.png") no-repeat top center;
+        }
+    }
+
+    .sjybj-case {
+        padding-top: 50px;
+        padding-bottom: 60px;
+        .list {
+            margin-top: 48px;
+            li {
+                float: left;
+                a {
+                    display: block;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        transition: all 0.35s;
+                    }
+                    &:hover {
+                        img {
+                            transform: scale(1.2);
+                        }
+                    }
+                }
+                &.item-1 {
+                    margin-right: 20px;
+                    a {
+                        width: 526px;
+                        height: 469px;
+                        overflow: hidden;
+                    }
+                }
+                &.item-2 {
+                    margin-bottom: 20px;
+                    a {
+                        width: 554px;
+                        height: 273px;
+                        overflow: hidden;
+                    }
+                }
+                &.item-3 {
+                    margin-right: 20px;
+                    a {
+                        width: 267px;
+                        height: 176px;
+                        overflow: hidden;
+                    }
+                }
+
+                &.item-4 {
+                    a {
+                        width: 267px;
+                        height: 176px;
+                        overflow: hidden;
+                    }
+                }
+            }
+        }
+        .more {
+            width: 344px;
+            height: 38px;
+            line-height: 38px;
+            text-align: center;
+            color: #fff;
+            font-size: 18px;
+            display: block;
+            background: #27c27b;
+            margin: 60px auto 0;
+            border-radius: 5px;
+            &:hover {
+                background: darken(#27c27b, 3%);
+            }
+        }
+    }
+
+
+
+
+    .sjybj-warn {
+        padding: 50px 0 60px;
+        .intro {
+            background: url("../img/shejiyubaojia/sjybj_warn_1.png") no-repeat left top;
+            padding-top: 72px;
+            padding-left: 417px;
+            min-height: 200px;
+            .detail {
+                color: #333333;
+                line-height: 2.5;
+                padding: 25px;
+                border: 2px dashed #b9b9b9;
+            }
+        }
+    }
+
+    .sjybj-xcq {
+        height: 539px;
+        position: relative;
+        background: url("../img/shejiyubaojia/sjybj_xcq.jpg") no-repeat top center;
+        .item-1 {
+            width: 599px;
+            height: 178px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            margin-left: -300px;
+            margin-top: -89px;
+            overflow: hidden;
+            border:3px solid #fff;
+            background:#ffe94e;
+            text-align:center;
+            .txt-1{
+            	color:#000202;
+            	font-size:40px;
+            	margin-top: 15px; 
+            	span{
+            		color:#ff0000;
+            		padding:0 10px; 
+            		font-family:arial;
+            		font-weight:bold;   
+            	}
+            }
+            .line{
+            	width:99px;
+            	height:4px;
+            	background:#ffb400;
+            	margin:10px auto 0;   
+            }
+            .txt-2{
+            	color:#000202;
+            	margin-top:15px; 
+            	font-size:26px; 
+            }
+        }
+    }
+
+    .sjybj-zxfn-form {
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: 101px;
+        bottom:-200px; 
+        background-color:#000;
+        background-color: rgba(0, 0, 0, 0.8);
+        transition: all 0.5s;
+		&.active{
+			bottom: 0;
+		}
+        .form-box {
+            position: relative;
+            padding-left: 450px;
+            padding-top: 30px;
+            .ipt-text {
+                width: 207px;
+                padding: 8px 15px;
+                height: 24px;
+                line-height: 24px;
+                font-size: 14px;
+            }
+            .ipt-submit {
+                height: 40px;
+                line-height: 40px;
+                font-size: 16px;
+                color: #fff;
+                width: 144px;
+                background: #ff5353;
+                cursor: pointer;
+                &:hover {
+                    background: darken(#ff5353, 5%);
+                }
+            }
+        }
+        .icon-man {
+            position: absolute;
+            left: 0;
+            width: 437px;
+            height: 155px;
+            top: -54px;
+            overflow: hidden;
+            background: url("../img/shejiyubaojia/sjybj_zxfn_form_1.png") no-repeat top center;
+        }
+    }
+    .sjybj-zxfn-form-seat{
+    	height: 101px;
+    }
+    /**
+ * 局部改造
+ */
+
+    .jbgz-m-1 {
+        padding-top: 50px;
+        padding-bottom: 55px;
+        .item-1 {
+            width: 1099px;
+            height: 362px;
+            margin-top: 60px;
+            background: url("../img/shejiyubaojia/jbgz_m_1_1.jpg") no-repeat top center;
+        }
+    }
+
+    .jbgz-m-2 {
+        height: 447px;
+        padding-top: 50px;
+        background: url("../img/shejiyubaojia/jbgz_m_2_bg.jpg") no-repeat top center;
+        .list {
+            width: 1130px;
+            margin-top: 35px;
+            li {
+                float: left;
+                margin-right: 20px;
+                a {
+                    display: block;
+                    width: 310px;
+                    padding: 20px;
+                    background: #fff;
+                    box-shadow: 0 0 15px #bbbaba;
+                    transition: all 0.35s;
+                    &:hover {
+                        transform: translate(0, -10px);
+                    }
+                }
+                .pic {
+                    width: 100%;
+                    height: 220px;
+                    overflow: hidden;
+                    display:block; 
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .txt {
+                    color: #333333;
+                    font-size: 18px;
+                    display: block;
+                    margin-top: 12px;
+                    text-align: center;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+
+    .jbgz-m-3 {
+        padding-top: 45px;
+        padding-bottom: 60px;
+        .list {
+            width: 1130px;
+            margin-top: 60px;
+            li {
+                float: left;
+                margin-right: 20px;
+                a {
+                    display: block;
+                    width: 496px;
+                    padding: 20px;
+                    background: #fff;
+                    box-shadow: 0 0 10px #eaeaea;
+                    transition: all 0.35s;
+                    &:hover {
+                        transform: translate(0, -10px);
+                    }
+                }
+                .pic {
+                    height: 310px;
+                    display: block;
+                    overflow: hidden;
+                    img {
+                        width: 100%;
+                        height: 100%;
+                    }
+                }
+                .txt {
+                    color: #333333;
+                    display: block;
+                    font-size: 18px;
+                    margin-top: 10px;
+
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                }
+            }
+        }
+    }
+    /**
+ * 免费验房两方
+ */
+
+    .yflf-m-1 {
+        padding-top: 50px;
+        .item-1 {
+            width: 1102px;
+            height: 615px;
+            margin: 60px auto 0;
+            background: url("../img/shejiyubaojia/yflf_m_1_1.jpg") no-repeat top center;
+        }
+    }
+
+    .yflf-m-2 {
+        height:700px;
+        padding-top:42px;
+        background:url("../img/shejiyubaojia/yflf_m_2_bg.jpg") no-repeat top center;
+        .list-out{
+            background:#fff;
+            padding:20px;
+            margin:40px auto 0;
+            width:1100px;
+            overflow:hidden;
+        }
+        .list{
+            width:1130px;
+            li{
+                float:left;
+                margin-right:10px;
+                margin-bottom:10px;
+                a{
+                    display:block;
+                    width:267px;
+                    height:250px;
+                    overflow:hidden;
+                    position:relative;
+                    &:hover{
+                        .txt{
+                            bottom:0;
+                        }
+                    }
+                }
+               .pic{
+                    display:block;
+                    width:100%;
+                    height:100%;
+                    overflow:hidden;
+                    img{
+                        width:100%;
+                        height:100%;
+                    }
+               } 
+               .txt{
+                    position:absolute;
+                    left:0;
+                    right:0;
+                    bottom:-40px;
+                    height:40px;
+                    line-height:40px;
+                    text-align:center;
+                    color:#fff;
+                    font-size:18px;
+                    padding: 0 10px;
+                     background-color:#000;
+                    background-color:rgba(0,0,0,0.7);
+                    white-space:nowrap;
+                    overflow:hidden;
+                    text-overflow:ellipsis;
+                    transition:all 0.35s;
+               }
+
+            }
+        }
+    }

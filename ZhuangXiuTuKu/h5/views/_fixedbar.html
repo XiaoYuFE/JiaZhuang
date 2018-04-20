@@ -1,0 +1,46 @@
+ <ul class="fixed-bar-guide">
+    <li class="gohome"><a href="index.html"></a></li>
+    <li class="goback"><a href="#"></a></li>
+    <li class="gototop"><a href="#gotop"></a></li>
+</ul>
+<script type="text/javascript">
+(function() {
+    $(function() {
+        var $goTop=$(".gototop");
+        var throttle = function(fn, delay, atleast) {
+            var timer = null;
+            var previous = null;
+
+            return function() {
+                var now = +new Date();
+
+                if (!previous) previous = now;
+
+                if (now - previous > atleast) {
+                    fn();
+                    // 重置上一次开始时间为本次结束时间
+                    previous = now;
+                } else {
+                    clearTimeout(timer);
+                    timer = setTimeout(function() {
+                        fn();
+                    }, delay);
+                }
+            }
+        }
+
+        var scrollTopDetect = throttle(function() {
+            var scrolltop = $(this).scrollTop();
+            if (scrolltop >= 500) {
+                $goTop.addClass("active");
+            } else if(scrolltop <= 500){
+                $goTop.removeClass("active");
+            }
+        },200,10);
+        $('<a name="gotop" style="visibility:hidden;"></a>').prependTo($("body"));
+        $(window).on("scroll",function(){
+            scrollTopDetect();
+        })  
+    })
+})()
+</script>

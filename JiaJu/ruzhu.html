@@ -1,0 +1,221 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>小鱼家居</title>
+<link href="css/home.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+		
+	jQuery(".hth-pin,.sc-select,.nav-more").hover(function(){
+		jQuery(this).addClass("active");
+	},function(){
+		jQuery(this).removeClass("active");
+	});
+	
+	jQuery(".sc-sort-list>li").find('a').click(function(){
+		jQuery(".sc-sort>span.color-666").html(jQuery(this).text());
+		jQuery('.sc-select').removeClass("active");
+	});
+	
+	/* 输入框默认提示*/
+	jQuery(".reg-txt").each(function(){
+
+		if(jQuery(this).val()){
+			jQuery(this).siblings(".inp-note").hide();
+		}else{
+			jQuery(this).siblings(".inp-note").click(function(){
+				jQuery(this).hide().siblings("input").focus();
+			});
+		}
+		jQuery(this).focus(function(){
+			jQuery(this).siblings(".inp-note").hide();
+		});
+		jQuery(this).blur(function(){
+			var txt = jQuery(this).val();
+			if(txt){
+				jQuery(this).siblings(".inp-note").hide();
+			}else{
+				jQuery(this).siblings(".inp-note").show();
+			}
+		});
+	});
+	/* end 输入框默认提示*/
+	
+});
+
+</script>
+</head>
+<body class="yahei">
+
+<!--头部-->
+<div class="home-topheader">
+	<div class="wrap clear">
+    	<div class="fl clear">
+        	<div class="fl relative hth-pin mr30"><a class="hth-lk" href="http://www.xmfish.com/" target="_blank">返回小鱼网首页</a></div>
+            <div class="fl relative hth-pin mr30">
+            	<a class="hth-lk" href="javascript:"><i class="icon icon-weixin"></i>家居微信</a>
+                <div class="hth-dropdown wxcode-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <div class="text-center pt8 pb8"><img src="img/weixin-code.jpg" width="120" height="120" alt="小鱼家居" /></div>
+                </div>
+            </div>
+            <div class="fl relative hth-pin mr30"><a class="hth-lk" href="javascript:"><i class="icon icon-weibo"></i>家居微博</a></div>
+            <div class="fl relative hth-pin"><a class="hth-lk" href="javascript:"><i class="icon icon-download"></i>下载小鱼客户端</a></div>
+        </div>
+        <div class="fr hth-right clear">
+        	<div class="fl relative hth-pin"><a class="hth-lk" href="#" target="_blank">家居商家入驻</a></div>
+            <div class="fl relative hth-pin ml30">
+            	<a class="hth-lk" href="javascript:">家居中心<i class="icon-grayarrow"></i></a>
+                <div class="hth-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <ul class="hth-menu">
+                    	<li><a href="#" target="_blank">家装招标</a></li>
+                        <li><a href="#" target="_blank">橱柜招标</a></li>
+                        <li><a href="#" target="_blank">合同审核</a></li>
+                        <li><a href="#" target="_blank">我的活动</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl relative hth-pin ml30">
+            	<a class="hth-lk" href="javascript:">消息<i class="icon-grayarrow"></i></a>
+                <div class="hth-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <ul class="hth-menu text-center">
+                    	<li><a href="#" target="_blank">私信</a></li>
+                        <li><a href="#" target="_blank">通知</a></li>
+                        <li><a href="#" target="_blank">粉丝</a></li>
+                        <li><a href="#" target="_blank">@我</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl relative hth-pin ml30">
+            	<a class="hth-lk color-orange" href="javascript:">Deweor<i class="icon-orangearrow"></i></a>
+                <div class="hth-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <ul class="hth-menu text-center">
+                    	<li><a href="#" target="_blank">论坛中心</a></li>
+                        <li><a href="#" target="_blank">论坛主页</a></li>
+                        <li><a href="#" target="_blank">我的帖子</a></li>
+                        <li><a href="javascript:">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl relative hth-pin ml30"><a class="hth-lk" href="http://bbs.xmfish.com/login.php" target="_blank">请登录</a></div>
+            <div class="fl relative hth-pin ml30"><a class="hth-lk color-orange" href="http://www.xiaoyu.com/register" target="_blank">注册</a></div>
+        </div>
+    </div>
+</div>
+<!--end 头部-->
+<div class="wrap">
+	<div class="clear">
+        <a class="fl home-logo" href="/" target="_parent">小鱼家居</a>
+        <div class="fl sub-heads"><span class="pl20 pr20 color-999">|</span>商家申请入驻</div>
+    </div>  
+	<div class="mt30 font-14 color-999">请填写您的基本信息，稍后我们的工作人员会与您取得联系并确认入驻详细事宜</div> 
+    <div class="bds mt5 pt20 pb20">
+    	<div class="checkin-panel">
+        	<table class="checkin-tb font-14">
+            	<tbody>
+                	<tr>
+                    	<th>行业分类</th>
+                        <td><label class="mr10"><input type="radio" />装修公司</label><label class="mr10"><input type="radio" />建材商家</label><label class="mr10"><input type="radio" />橱柜商家</label><label class="mr10"><input type="radio" />其它</label></td>
+                    </tr>
+                    <tr>
+                    	<th>商家名称</th>
+                        <td>
+                            <div class="relative">
+                                <input class="reg-txt" type="text" value="">
+                                <span class="inp-note">请输入您的公司／机构／店铺名称</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>联系人</th>
+                        <td>
+                        	<div class="relative">
+                                <input class="reg-txt" type="text" value="">
+                                <span class="inp-note">请输入您的称呼</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>手机号</th>
+                        <td>
+                        	<div class="relative clear">
+                                <input class="fl reg-txt" style="width:200px;" type="text" value="">
+                                <span class="inp-note">请输入您的手机号码</span>
+                                <a class="fl verification-btn color-999" href="javascript:">获取验证码</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>验证码</th>
+                        <td>
+                        	<div class="relative">
+                                <input class="reg-txt" type="text" value="">
+                                <span class="inp-note">请输入您的手机验证码</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th></th>
+                        <td><a class="orange-btn font-16" href="javascript:">免费申请</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!--footer-->
+<div class="mt10 footer">
+	<div class="wrap">
+    	<div class="clear pt20 pb20">
+        	<dl class="fl ft-weixincode-dl clear">
+            	<dt class="fl"><img src="img/weixin-code.jpg" width="72" height="72" alt="小鱼家居" /></dt>
+                <dd>
+                	<div class="font-16">小鱼家居</div>
+                    <div class="mt5 font-14 color-666">扫码关注，获取省钱秘籍</div>
+                    <div class="font-14 color-666">48小时内回复您的装修问题</div>
+                </dd>
+            </dl>
+            <dl class="fl ft-weixincode-dl clear">
+            	<dt class="fl"><img src="img/weixin-code2.jpg" width="80" height="80" alt="居家地带" /></dt>
+                <dd>
+                	<div class="font-16">居家地带</div>
+                    <div class="mt5 font-14 color-666">扫码关注，</div>
+                    <div class="font-14 color-666">轻松打理日常居家生活</div>
+                </dd>
+            </dl>
+            <dl class="fl mt5 ft-qqservice">
+            	<dt class="font-16">QQ咨询</dt>
+                <dd class="mt5">
+                	<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2452614649&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="icon icon-qq"></i>
+                        <span class="font-14 color-666">小编玫子</span>
+                    </a>
+                    <a class="ml30" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1768983798&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="icon icon-qq"></i>
+                        <span class="font-14 color-666">小编麦芽</span>
+                    </a>
+                </dd>
+            </dl>
+            <dl class="mt5 fr">
+            	<dt class="font-16">商务合作</dt>
+                <dd class="mt5 font-14 color-666">139 5000 4249（卢先生）</dd>
+            </dl>
+        </div>
+        <div class="bts pt20 pb20 text-center color-999">Copyright © 2003-2016 小鱼网 版权所有，并保留所有权利。 闽公网安备35020302000108号 闽ICP备12013448号-2</div>
+    </div>
+</div>
+<!--end footer-->
+
+</body>
+</html>

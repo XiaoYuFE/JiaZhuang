@@ -1,0 +1,1538 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>小鱼家居</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://www.xmfish.com/js/chanel/www/jquery.SuperSlide.js"></script>
+    <script type="text/javascript" src="js/layer/layer.js"></script>
+    <script>
+    /*头图切换*/
+    function liSum(wrap, list, pageUL, pageCUR) {
+        var len = jQuery(wrap).find(list).length;
+        var i = 1;
+        var UL = "<ul class='pagination'>";
+        for (i; i <= len; i++) {
+            if (i == 1) {
+                UL += "<li class=" + pageCUR + "><a href='javascript:void(0);'>1</a></li>";
+            } else {
+                UL += "<li><a href='javascript:void(0);'>" + i + "</a></li>";
+            }
+        }
+        UL += "</ul>";
+        jQuery(wrap).append(UL);
+        return false;
+    }
+    /* end 头图切换*/
+
+    $(document).ready(function() {
+
+        jQuery(".hth-pin,.sc-select,.nav-more").hover(function() {
+            jQuery(this).addClass("active");
+        }, function() {
+            jQuery(this).removeClass("active");
+        });
+
+        jQuery(".sc-sort-list>li").find('a').click(function() {
+            jQuery(".sc-sort>span.color-666").html(jQuery(this).text());
+            jQuery('.sc-select').removeClass("active");
+        });
+
+        jQuery(".reg-hd>li").click(function() {
+            var nodenum = jQuery(this).index();
+            jQuery('.reg-hd>li').removeClass('active');
+            jQuery(this).addClass('active');
+            jQuery('.reg-form').hide();
+            if (nodenum == 0) {
+                jQuery('#regzx').show();
+            }
+            if (nodenum == 1) {
+                jQuery('#regcg').show();
+            }
+            if (nodenum == 2) {
+                jQuery('#reggytf').show();
+            }
+            if (nodenum == 3) {
+                jQuery('#regyftd').show();
+            }
+        });
+
+        var flag = 1;
+        jQuery(".brand-tab>li").click(function() {
+            var nodenum = jQuery(this).index();
+            jQuery('.brand-tab>li').removeClass('active');
+            jQuery(this).addClass('active');
+            jQuery('#brand-design,#brand-material').hide();
+            if (nodenum == 0) {
+                jQuery('#brand-design').show();
+            }
+            if (nodenum == 1) {
+                jQuery('#brand-material').show();
+                if (flag) {
+                    flag = 0;
+                    jQuery("#brandmaterial-slider").slide({
+                        mainCell: "ul",
+                        autoPlay: true,
+                        effect: "leftMarquee",
+                        vis: 9,
+                        interTime: 50,
+                        trigger: "click"
+                    });
+                }
+            }
+        });
+
+        /*轮播*/
+        liSum('.theme_slider', '.pic_pin', '.pagination', 'current');
+        jQuery(".theme_slider").slide({
+            mainCell: ".slides_container",
+            titCell: ".pagination li",
+            effect: "leftLoop",
+            autoPlay: true,
+            trigger: "click",
+            delayTime: 700,
+            interTime: 3400,
+            titOnClassName: "current"
+        });
+
+        jQuery(".hotactivity_slides").slide({
+            mainCell: ".slides_container",
+            effect: "topLoop",
+            autoPlay: true,
+            trigger: "click",
+            delayTime: 700,
+            interTime: 3400,
+            titOnClassName: "current"
+        });
+
+        liSum('.diary_slider', '.diary_pin', '.pagination', 'current');
+        jQuery(".diary_slider").slide({
+            mainCell: ".slides_container",
+            titCell: ".pagination li",
+            effect: "leftLoop",
+            autoPlay: true,
+            trigger: "click",
+            delayTime: 700,
+            interTime: 3400,
+            titOnClassName: "current"
+        });
+
+        liSum('.gallerycase_slider', '.pic_pin', '.pagination', 'current');
+        jQuery(".gallerycase_slider").slide({
+            mainCell: ".slides_container",
+            titCell: ".pagination li",
+            effect: "leftLoop",
+            autoPlay: true,
+            trigger: "click",
+            delayTime: 700,
+            interTime: 3400,
+            titOnClassName: "current"
+        });
+
+        setTimeout(function() {
+            jQuery("#branddesign-slider").slide({
+                mainCell: "ul",
+                autoPlay: true,
+                effect: "leftMarquee",
+                vis: 9,
+                interTime: 50,
+                trigger: "click"
+            });
+        }, 20)
+        /* end 轮播*/
+
+        /* 输入框默认提示*/
+        jQuery(".sc-inp,.reg-txt").each(function() {
+
+            if (jQuery(this).val()) {
+                jQuery(this).siblings(".inp-note").hide();
+            } else {
+                jQuery(this).siblings(".inp-note").click(function() {
+                    jQuery(this).hide().siblings("input").focus();
+                });
+            }
+            jQuery(this).focus(function() {
+                jQuery(this).siblings(".inp-note").hide();
+            });
+            jQuery(this).blur(function() {
+                var txt = jQuery(this).val();
+                if (txt) {
+                    jQuery(this).siblings(".inp-note").hide();
+                } else {
+                    jQuery(this).siblings(".inp-note").show();
+                }
+            });
+        });
+        /* end 输入框默认提示*/
+
+        //图片上传预览
+        $('input.uploadpic[type="file"]').change(function(e) {
+            var file = e.target.files[0];
+            console.log(file.size)
+            if (file.size > 2 * 1024 * 1024) {
+                alert('图片大小不能超过2M！');
+                $(this).parents('.uploadinput').show();
+                $(this).parents('.uploadinput').next('.uploadviewpic').hide()
+                return false;
+            }
+
+            var type = ['image/jpeg', 'image/png', 'image/gif'];
+            if ($.inArray(file.type, type) < 0) {
+                alert('请选择正确的文件格式！');
+                $(this).parents('.uploadinput').show();
+                $(this).parents('.uploadinput').next('.uploadviewpic').hide()
+                return false;
+            }
+
+            var img_src = URL.createObjectURL(file);
+            $(this).parents('.uploadinput').next('.uploadviewpic').show().find('img.viewpic').attr('src', img_src);
+            $(this).parents('.uploadinput').hide();
+        });
+        $('.viewpic-close').click(function() {
+            $(this).parents('.uploadviewpic').hide();
+            $(this).parents('.uploadviewpic').prev('.uploadinput').show();
+        });
+
+    });
+    </script>
+</head>
+
+<body class="yahei">
+    <!--头部-->
+    <div class="home-topheader">
+        <div class="wrap clear">
+            <div class="fl clear">
+                <div class="fl relative hth-pin mr30"><a class="hth-lk" href="http://www.xmfish.com/" target="_blank">返回小鱼网首页</a></div>
+                <div class="fl relative hth-pin mr30">
+                    <a class="hth-lk" href="javascript:"><i class="icon icon-weixin"></i>家居微信</a>
+                    <div class="hth-dropdown wxcode-dropdown">
+                        <i class="icon-dropdownarrow-wrap"></i>
+                        <i class="icon-dropdownarrow"></i>
+                        <div class="text-center pt8 pb8"><img src="img/weixin-code.jpg" width="120" height="120" alt="小鱼家居" /></div>
+                    </div>
+                </div>
+                <div class="fl relative hth-pin mr30"><a class="hth-lk" href="javascript:"><i class="icon icon-weibo"></i>家居微博</a></div>
+                <div class="fl relative hth-pin"><a class="hth-lk" href="javascript:"><i class="icon icon-download"></i>下载小鱼客户端</a></div>
+            </div>
+            <div class="fr hth-right clear">
+                <div class="fl relative hth-pin"><a class="hth-lk" href="#" target="_blank">家居商家入驻</a></div>
+                <div class="fl relative hth-pin ml30">
+                    <a class="hth-lk" href="javascript:">家居中心<i class="icon-grayarrow"></i></a>
+                    <div class="hth-dropdown">
+                        <i class="icon-dropdownarrow-wrap"></i>
+                        <i class="icon-dropdownarrow"></i>
+                        <ul class="hth-menu">
+                            <li><a href="#" target="_blank">家装招标</a></li>
+                            <li><a href="#" target="_blank">橱柜招标</a></li>
+                            <li><a href="#" target="_blank">合同审核</a></li>
+                            <li><a href="#" target="_blank">我的活动</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="fl relative hth-pin ml30">
+                    <a class="hth-lk" href="javascript:">消息<i class="icon-grayarrow"></i></a>
+                    <div class="hth-dropdown">
+                        <i class="icon-dropdownarrow-wrap"></i>
+                        <i class="icon-dropdownarrow"></i>
+                        <ul class="hth-menu text-center">
+                            <li><a href="#" target="_blank">私信</a></li>
+                            <li><a href="#" target="_blank">通知</a></li>
+                            <li><a href="#" target="_blank">粉丝</a></li>
+                            <li><a href="#" target="_blank">@我</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="fl relative hth-pin ml30">
+                    <a class="hth-lk color-orange" href="javascript:">Deweor<i class="icon-orangearrow"></i></a>
+                    <div class="hth-dropdown">
+                        <i class="icon-dropdownarrow-wrap"></i>
+                        <i class="icon-dropdownarrow"></i>
+                        <ul class="hth-menu text-center">
+                            <li><a href="#" target="_blank">论坛中心</a></li>
+                            <li><a href="#" target="_blank">论坛主页</a></li>
+                            <li><a href="#" target="_blank">我的帖子</a></li>
+                            <li><a href="javascript:">退出</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="fl relative hth-pin ml30"><a class="hth-lk" href="http://bbs.xmfish.com/login.php" target="_blank">请登录</a></div>
+                <div class="fl relative hth-pin ml30"><a class="hth-lk color-orange" href="http://www.xiaoyu.com/register" target="_blank">注册</a></div>
+            </div>
+        </div>
+    </div>
+    <!--end 头部-->
+    <!--搜索-->
+    <div class="wrap search-wrap clear">
+        <a class="fl home-logo" href="/" target="_parent">小鱼家居</a>
+        <div class="fl sc-panel clear">
+            <div class="fl sc-con clear">
+                <div class="fl sc-select relative">
+                    <a class="sc-sort text-center" href="javascript:void(0)"><span class="color-666">装修日记</span><i class="icon-scarrow"></i></a>
+                    <ul class="sc-sort-list">
+                        <li><a href="javascript:void(0)">装修日记</a></li>
+                        <li><a href="javascript:void(0)">装修讨论</a></li>
+                        <li><a href="javascript:void(0)">家装图库</a></li>
+                        <li><a href="javascript:void(0)">设计公司</a></li>
+                        <li><a href="javascript:void(0)">家装建材</a></li>
+                    </ul>
+                </div>
+                <div class="fl relative">
+                    <input class="sc-inp yahei" type="text" /><span class="inp-note">请输入...</span></div>
+            </div>
+            <button class="fl sc-btn yahei">搜索</button>
+        </div>
+        <!-- 修改 by yyh 2017-06-02  添加家装装修入口-->
+        <a class="jz_qa_entry" href="#"></a>
+        <!-- 修改 by yyh 2017-06-02-->
+    </div>
+    <!--end 搜索-->
+    <!--导航-->
+    @@include("./views/_nav.html")
+    <!--end 导航-->
+    <div class="wrap">
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-1.jpg" width="1100" height="120" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-3.jpg" width="1100" height="35" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!--end 广告-->
+        <div class="mt10 clear">
+            <!--轮播-->
+            <div class="fl con-750">
+                <div class="theme_slider">
+                    <div class="slides_container">
+                        <div class="pic_pin">
+                            <a href="#" target="_blank"><img width="750" height="320" src="upload/v-4.jpg" alt="#" /></a>\
+                            <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家</a></div>
+                        </div>
+                        <div class="pic_pin">
+                            <a href="#" target="_blank"><img width="750" height="320" src="upload/v-4.jpg" alt="#" /></a>\
+                            <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家</a></div>
+                        </div>
+                        <div class="pic_pin">
+                            <a href="#" target="_blank"><img width="750" height="320" src="upload/v-4.jpg" alt="#" /></a>\
+                            <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家</a></div>
+                        </div>
+                        <div class="pic_pin">
+                            <a href="#" target="_blank"><img width="750" height="320" src="upload/v-4.jpg" alt="#" /></a>\
+                            <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家</a></div>
+                        </div>
+                        <div class="pic_pin">
+                            <a href="#" target="_blank"><img width="750" height="320" src="upload/v-4.jpg" alt="#" /></a>\
+                            <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家</a></div>
+                        </div>
+                    </div>
+                    <a class="prev" href="javascript:void(0);"></a>
+                    <a class="next" href="javascript:void(0);"></a>
+                </div>
+            </div>
+            <!--end 轮播-->
+            <!--报名 修改  2018-0329 yyh start ***************-->
+            <div class="h-bm-form-1">
+            @@include("./views/_mfbj-forms.html")
+            
+      @@include("./views/_mfbj-forms-dialog.html")
+            </div>
+            <!--报名 修改  2018-0329 yyh end ***************-->
+        </div>
+        <div class="mt10 cpanel pt40 pb40 pr40 clear">
+            <div class="fl news-con pl40">
+                <dl>
+                    <dt class="fn-nowrap font-20"><a href="#" target="_blank"><i class="icon-graycircle1 mr15 ulib-r100"></i>早知道！房价这么贵的时候 家装风格再道！房价这么贵的时候 家装风格再也不道！房价这么贵的时候 家装风格再也不道！房价这么贵的时候 家装风格再也不走偏</a></dt>
+                    <dd class="mt15 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全定制产品 要全面定制产品 要全面定制产品 要全面定制产品 要全面面了解这些才不怕被坑</a></dd>
+                    <dd class="mt5 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                </dl>
+                <dl class="mt30">
+                    <dt class="fn-nowrap font-20"><a class="color-orange" href="#" target="_blank"><i class="icon-graycircle1 mr15 ulib-r100"></i>早知道！房价这么贵的时候 家装风格再也不能走偏</a></dt>
+                    <dd class="mt15 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                    <dd class="mt5 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                </dl>
+            </div>
+            <div class="fr bls news-con pl40">
+                <dl>
+                    <dt class="fn-nowrap font-20"><a class="color-orange" href="#" target="_blank"><i class="icon-graycircle1 mr15 ulib-r100"></i>早知道！房价这么贵的时候 家装风格再也不能走偏</a></dt>
+                    <dd class="mt15 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                    <dd class="mt5 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                </dl>
+                <dl class="mt30">
+                    <dt class="fn-nowrap font-20"><a href="#" target="_blank"><i class="icon-graycircle1 mr15 ulib-r100"></i>早知道！房价这么贵的时候 家装风格再也不能走偏</a></dt>
+                    <dd class="mt15 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                    <dd class="mt5 fn-nowrap font-14"><i class="icon-graycircle2 mr15 ulib-r100"></i><a class="color-green" href="#" target="_blank">[装修讨论]</a><a href="#" target="_blank">采购定制产品 要全面了解这些才不怕被坑</a></dd>
+                </dl>
+            </div>
+        </div>
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!-- end 广告-->
+        <!-- 优惠活动 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">优惠活动</h4>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">更多活动</a>
+            </div>
+            <div class="pt10 pl20 pb30 overflowhidden">
+                <ul class="preferential-list text-center font-16 clear">
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><span class="pref-tip">促销</span><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" target="_blank">
+                            <div class="bds p1 relative"><img src="upload/v-5.jpg" width="250" height="180" alt="#" /></div>
+                            <div class="mt5 fn-nowrap">博若森3.15品质万里行</div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- end 优惠活动 -->
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!-- end 广告-->
+        <!-- 装修流程 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">装修流程</h4>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">我要装修</a>
+            </div>
+            <div class="overflowhidden pt20 pb15">
+                <ul class="process-list font-14 text-center clear">
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-1"></i></div>
+                        <p class="mt2">收房准备</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-2"></i></div>
+                        <p class="mt2">装修准备</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-3"></i></div>
+                        <p class="mt2">水电工程</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-4"></i></div>
+                        <p class="mt2">瓦工工程</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-5"></i></div>
+                        <p class="mt2">木工工程</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-6"></i></div>
+                        <p class="mt2">油漆工程</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-7"></i></div>
+                        <p class="mt2">安装收尾</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-8"></i></div>
+                        <p class="mt2">软装进行</p>
+                    </li>
+                    <li>
+                        <div class="process-icon"><i class="icon icon-pcs-9"></i></div>
+                        <p class="mt2">即将入住</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- end 装修流程 -->
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!-- end 广告-->
+        <!-- 实用图库案例 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">实用图库案例</h4>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">查看全部图库</a>
+            </div>
+            <div class="pt20 pl20 pr20 pb12">
+                <div class="gallerycase-style clear">
+                    <dl class="fl gallerycase-style-pin clear">
+                        <dt class="fl font-18">风格</dt>
+                        <dd class="font-14">
+                            <a href="#" target="_blank">现代</a>
+                            <a href="#" target="_blank">欧式</a>
+                            <a href="#" target="_blank">中式</a>
+                            <a href="#" target="_blank">简约</a>
+                            <a href="#" target="_blank">美式</a>
+                            <a href="#" target="_blank">更多</a>
+                        </dd>
+                    </dl>
+                    <dl class="fl gallerycase-style-pin clear">
+                        <dt class="fl font-18">色系</dt>
+                        <dd class="font-14">
+                            <a href="#" target="_blank">白色</a>
+                            <a href="#" target="_blank">黄色</a>
+                            <a href="#" target="_blank">黑色</a>
+                            <a href="#" target="_blank">红色</a>
+                            <a href="#" target="_blank">绿色</a>
+                            <a href="#" target="_blank">更多</a>
+                        </dd>
+                    </dl>
+                    <dl class="fl gallerycase-style-pin clear">
+                        <dt class="fl font-18">户型</dt>
+                        <dd class="font-14">
+                            <a href="#" target="_blank">一室</a>
+                            <a href="#" target="_blank">二室</a>
+                            <a href="#" target="_blank">三室</a>
+                            <a href="#" target="_blank">四室</a>
+                            <a href="#" target="_blank">五室</a>
+                            <a href="#" target="_blank">更多</a>
+                        </dd>
+                    </dl>
+                    <dl class="fl gallerycase-style-pin clear" style="width:250px;">
+                        <dt class="fl font-18">用途</dt>
+                        <dd class="font-14">
+                            <a href="#" target="_blank">新房自住</a>
+                            <a href="#" target="_blank">二手房改造</a>
+                            <a href="#" target="_blank">婚房</a>
+                            <a href="#" target="_blank">三口之家</a>
+                            <a style="width:70px;" href="#" target="_blank">二人世界</a>
+                            <a href="#" target="_blank">更多</a>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="mt20 clear">
+                    <div class="fl con-582">
+                        <div class="gallerycase_slider p1 bds">
+                            <div class="slides_container">
+                                <div class="pic_pin">
+                                    <a href="#" target="_blank"><img width="580" height="350" src="upload/v-4.jpg" alt="#" /></a>
+                                    <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家超预算成瘾 追求生活品质的家</a></div>
+                                </div>
+                                <div class="pic_pin">
+                                    <a href="#" target="_blank"><img width="580" height="350" src="upload/v-4.jpg" alt="#" /></a>
+                                    <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                                </div>
+                                <div class="pic_pin">
+                                    <a href="#" target="_blank"><img width="580" height="350" src="upload/v-4.jpg" alt="#" /></a>
+                                    <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                                </div>
+                                <div class="pic_pin">
+                                    <a href="#" target="_blank"><img width="580" height="350" src="upload/v-4.jpg" alt="#" /></a>
+                                    <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                                </div>
+                                <div class="pic_pin">
+                                    <a href="#" target="_blank"><img width="580" height="350" src="upload/v-4.jpg" alt="#" /></a>
+                                    <div class="txt-wrap"><a class="fn-nowrap" href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fr con-466 overflowhidden">
+                        <ul class="gallerycase-list clear">
+                            <li>
+                                <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                                <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                                <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                                <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                                <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end 实用图库案例 -->
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!-- end 广告-->
+        <!-- 小编家访 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">小编家访</h4>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">查看全部内容</a>
+            </div>
+            <div class="pt20 pl20 pr20 pb12 clear">
+                <div class="fl con-332">
+                    <div class="p1 bds family-theme relative">
+                        <a href="#" target="_blank"><img src="upload/v-5.jpg" width="328" height="175" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                        <div class="txt-wrap"><a href="#" target="_blank" title="全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水是偶发……">全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水是偶发……</a></div>
+                    </div>
+                    <ul class="mt10 news-list font-14">
+                        <li class="fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着惊人！在我们没有留意的角落也存在着</a></li>
+                        <li class="fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></li>
+                        <li class="fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></li>
+                        <li class="fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></li>
+                        <li class="fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></li>
+                        <li class="fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></li>
+                    </ul>
+                </div>
+                <div class="fr con-680">
+                    <div class="overflowhidden">
+                        <ul class="homevisits-list clear">
+                            <li>
+                                <a href="#" target="_blank"><img src="upload/v-5.jpg" width="330" height="350" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                                <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                            </li>
+                            <li>
+                                <a href="#" target="_blank"><img src="upload/v-5.jpg" width="330" height="350" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                                <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end 小编家访 -->
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!-- end 广告-->
+        <!-- 精选装修日记 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">精选装修日记</h4>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">查看全部日志</a>
+            </div>
+            <div class="pt20 pl20 pr20 pb15 clear">
+                <div class="fl con-332">
+                    <div class="bds p1">
+                        <a href="#" target="_blank"><img src="upload/v-7.jpg" width="328" height="118" alt="#" /></a>
+                    </div>
+                    <dl class="latest-diary mt10">
+                        <dt class="font-16">24小时最新日记</dt>
+                        <dd class="font-14 fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落惊人！在我们没有留意的角落也存在也存在着</a></dd>
+                        <dd class="font-14 fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></dd>
+                        <dd class="font-14 fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></dd>
+                        <dd class="font-14 fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></dd>
+                        <dd class="font-14 fn-nowrap"><a href="#" target="_blank" title="惊人！在我们没有留意的角落也存在着">惊人！在我们没有留意的角落也存在着</a></dd>
+                    </dl>
+                </div>
+                <div class="fr con-710">
+                    <div class="diary_slider p1 bds">
+                        <div class="slides_container">
+                            <div class="diary_pin">
+                                <a class="fl" href="#" target="_blank"><img width="470" height="309" src="upload/v-8.jpg" alt="#" /></a>
+                                <div class="fr con-200 pt20 pr20">
+                                    <dl class="diary-author clear">
+                                        <dt class="fl">
+                                            <a href="#" target="_blank"><img class="ulib-r100" src="upload/v-9.jpg" width="50" height="50" alt="Dwerrer" /></a>
+                                        </dt>
+                                        <dd>
+                                            <div class="font-14"><a href="#" target="_blank">Dwerrer</a></div>
+                                            <div class="color-green fn-nowrap" title="莲花映碧里装修进行中">莲花映碧里<span class="ml3 mr3">｜</span>装修进行中</div>
+                                        </dd>
+                                    </dl>
+                                    <div class="diary-tt mt10 font-16">
+                                        亚之升装修特惠：半包
+                                        <br /> 455元m²
+                                    </div>
+                                    <div class="diary-info mt5 font-14 color-666">半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水……</div>
+                                </div>
+                            </div>
+                            <div class="diary_pin">
+                                <a class="fl" href="#" target="_blank"><img width="470" height="309" src="upload/v-8.jpg" alt="#" /></a>
+                                <div class="fr con-200 pt20 pr20">
+                                    <dl class="diary-author clear">
+                                        <dt class="fl">
+                                            <a href="#" target="_blank"><img class="ulib-r100" src="upload/v-9.jpg" width="50" height="50" alt="Dwerrer" /></a>
+                                        </dt>
+                                        <dd>
+                                            <div class="font-14"><a href="#" target="_blank">Dwerrer</a></div>
+                                            <div class="color-green fn-nowrap" title="莲花映碧里装修进行中">莲花映碧里<span class="ml3 mr3">｜</span>装修进行中</div>
+                                        </dd>
+                                    </dl>
+                                    <div class="diary-tt mt10 font-16">
+                                        亚之升装修特惠：半包
+                                        <br /> 455元m²
+                                    </div>
+                                    <div class="diary-info mt5 font-14 color-666">半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水……</div>
+                                </div>
+                            </div>
+                            <div class="diary_pin">
+                                <a class="fl" href="#" target="_blank"><img width="470" height="309" src="upload/v-8.jpg" alt="#" /></a>
+                                <div class="fr con-200 pt20 pr20">
+                                    <dl class="diary-author clear">
+                                        <dt class="fl">
+                                            <a href="#" target="_blank"><img class="ulib-r100" src="upload/v-9.jpg" width="50" height="50" alt="Dwerrer" /></a>
+                                        </dt>
+                                        <dd>
+                                            <div class="font-14"><a href="#" target="_blank">Dwerrer</a></div>
+                                            <div class="color-green fn-nowrap" title="莲花映碧里装修进行中">莲花映碧里<span class="ml3 mr3">｜</span>装修进行中</div>
+                                        </dd>
+                                    </dl>
+                                    <div class="diary-tt mt10 font-16">
+                                        亚之升装修特惠：半包
+                                        <br /> 455元m²
+                                    </div>
+                                    <div class="diary-info mt5 font-14 color-666">半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水……</div>
+                                </div>
+                            </div>
+                            <div class="diary_pin">
+                                <a class="fl" href="#" target="_blank"><img width="470" height="309" src="upload/v-8.jpg" alt="#" /></a>
+                                <div class="fr con-200 pt20 pr20">
+                                    <dl class="diary-author clear">
+                                        <dt class="fl">
+                                            <a href="#" target="_blank"><img class="ulib-r100" src="upload/v-9.jpg" width="50" height="50" alt="Dwerrer" /></a>
+                                        </dt>
+                                        <dd>
+                                            <div class="font-14"><a href="#" target="_blank">Dwerrer</a></div>
+                                            <div class="color-green fn-nowrap" title="莲花映碧里装修进行中">莲花映碧里<span class="ml3 mr3">｜</span>装修进行中</div>
+                                        </dd>
+                                    </dl>
+                                    <div class="diary-tt mt10 font-16">
+                                        亚之升装修特惠：半包
+                                        <br /> 455元m²
+                                    </div>
+                                    <div class="diary-info mt5 font-14 color-666">半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水……</div>
+                                </div>
+                            </div>
+                            <div class="diary_pin">
+                                <a class="fl" href="#" target="_blank"><img width="470" height="309" src="upload/v-8.jpg" alt="#" /></a>
+                                <div class="fr con-200 pt20 pr20">
+                                    <dl class="diary-author clear">
+                                        <dt class="fl">
+                                            <a href="#" target="_blank"><img class="ulib-r100" src="upload/v-9.jpg" width="50" height="50" alt="Dwerrer" /></a>
+                                        </dt>
+                                        <dd>
+                                            <div class="font-14"><a href="#" target="_blank">Dwerrer</a></div>
+                                            <div class="color-green fn-nowrap" title="莲花映碧里装修进行中">莲花映碧里<span class="ml3 mr3">｜</span>装修进行中</div>
+                                        </dd>
+                                    </dl>
+                                    <div class="diary-tt mt10 font-16">
+                                        亚之升装修特惠：半包
+                                        <br /> 455元m²
+                                    </div>
+                                    <div class="diary-info mt10 font-14 color-666">半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水半包项目包括： 敲打搬运部分：全居室铲白灰;客厅、餐厅踢脚线敲打；搬运水……</div>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="prev" href="javascript:void(0);"></a>
+                        <a class="next" href="javascript:void(0);"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end 精选装修日记 -->
+        <!--广告-->
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <div class="mt10">
+            <a href="#" target="_blank"><img src="upload/v-2.jpg" width="1100" height="60" alt="#" /></a><span class="xiaoyu-lb-adtip" style="display:block;position:relative;*position:static;left:0;margin-top:-22px;width:40px;background-color:rgba(0,0,0,.05);line-height:22px;font-size:12px;color:#fff;text-align:center;text-decoration:none;">广告</span></div>
+        <!-- end 广告-->
+        <!-- 精选建材商品 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">精选建材商品</h4>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">查看全部商品</a>
+            </div>
+            <div class="pt20 pl20 pr20 clear">
+                <div class="fl con-330 pb20">
+                    <div>
+                        <a href="#" target="_blank"><img src="upload/v-10.jpg" width="330" height="294" alt="#"></a>
+                    </div>
+                    <div class="mt20"><a class="orange-btn font-18" href="#" target="_blank">入驻小鱼家装，上传我的商品！</a></div>
+                </div>
+                <div class="fr con-706 overflowhidden">
+                    <ul class="gallerycase-list clear">
+                        <li>
+                            <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                            <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                            <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                            <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                            <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                            <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                        </li>
+                        <li>
+                            <a href="#" target="_blank"><img src="upload/v-5.jpg" width="225" height="169" alt="[现代]超预算成瘾 追求生活品质的家"></a>
+                            <div class="txt-wrap fn-nowrap"><a href="#" target="_blank" title="[现代]超预算成瘾 追求生活品质的家">[现代]超预算成瘾 追求生活品质的家</a></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end 精选建材商品 -->
+        <!-- 精选建材商品 -->
+        <div class="mt10 cpanel">
+            <div class="cpanel-hd clear">
+                <h4 class="fl font-18 color-green">查找厦门优质商家</h4>
+                <ul class="fl ml30 brand-tab font-14 clear">
+                    <li class="active"><a href="javascript:">家装设计</a></li>
+                    <li><a href="javascript:">建材商家</a></li>
+                </ul>
+                <a class="fr mt5 font-14 color-999" href="#" target="_blank">查看全部商家</a>
+            </div>
+            <div class="pt20 pl20 pr20 pb20">
+                <div id="brand-design" class="clear relative">
+                    <div id="branddesign-slider" class="fl con-955">
+                        <ul class="brand-list clear">
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" alt="#" /></a>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="add-brand text-center font-14" href="#" target="_blank">
+                        <i class="icon icon-add"></i>
+                        <p class="mt5">我要入驻</p>
+                    </a>
+                </div>
+                <div id="brand-material" class="clear relative" style="display:none;">
+                    <div id="brandmaterial-slider" class="fl con-955">
+                        <ul class="brand-list clear">
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-gold">金</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-silver">银</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                            <li class="p1 bds">
+                                <span class="bdtip-copper">铜</span>
+                                <a href="#" target="_blank"><img src="upload/v-11.jpg" width="94" height="94" alt="#" /></a>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <a class="add-brand text-center font-14" href="#" target="_blank">
+                        <i class="icon icon-add"></i>
+                        <p class="mt5">我要入驻</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end 精选建材商品 -->
+        <div class="mt10 pt20 pb20 cpanel clear">
+            <dl class="fl advantage-pin clear">
+                <dt class="fl text-center"><i class="icon icon-adv-1"></i></dt>
+                <dd>
+                    <div class="font-16">全程服务有保障</div>
+                    <div class="font-14 color-666">小鱼家居直接监督，让服务无微不至</div>
+                </dd>
+            </dl>
+            <dl class="fl advantage-pin clear">
+                <dt class="fl text-center"><i class="icon icon-adv-2"></i></dt>
+                <dd>
+                    <div class="font-16">靠谱商家任你挑选</div>
+                    <div class="font-14 color-666">精挑细选的商家，保证服务质量</div>
+                </dd>
+            </dl>
+            <dl class="fl advantage-pin clear">
+                <dt class="fl text-center"><i class="icon icon-adv-3"></i></dt>
+                <dd>
+                    <div class="font-16">无忧售后不担心</div>
+                    <div class="font-14 color-666">有保障的合作方式，全程无担忧</div>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <!--footer-->
+    <div class="mt10 footer">
+        <div class="wrap">
+            <div class="clear pt20 pb20">
+                <dl class="fl ft-weixincode-dl clear">
+                    <dt class="fl"><img src="img/weixin-code.jpg" width="72" height="72" alt="小鱼家居" /></dt>
+                    <dd>
+                        <div class="font-16">小鱼家居</div>
+                        <div class="mt5 font-14 color-666">扫码关注，获取省钱秘籍</div>
+                        <div class="font-14 color-666">48小时内回复您的装修问题</div>
+                    </dd>
+                </dl>
+                <dl class="fl ft-weixincode-dl clear">
+                    <dt class="fl"><img src="img/weixin-code2.jpg" width="80" height="80" alt="居家地带" /></dt>
+                    <dd>
+                        <div class="font-16">居家地带</div>
+                        <div class="mt5 font-14 color-666">扫码关注，</div>
+                        <div class="font-14 color-666">轻松打理日常居家生活</div>
+                    </dd>
+                </dl>
+                <dl class="fl mt5 ft-qqservice">
+                    <dt class="font-16">QQ咨询</dt>
+                    <dd class="mt5">
+                        <a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2452614649&amp;site=qq&amp;menu=yes" target="_blank">
+                            <i class="icon icon-qq"></i>
+                            <span class="font-14 color-666">小编玫子</span>
+                        </a>
+                        <a class="ml30" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1768983798&amp;site=qq&amp;menu=yes" target="_blank">
+                            <i class="icon icon-qq"></i>
+                            <span class="font-14 color-666">小编麦芽</span>
+                        </a>
+                    </dd>
+                </dl>
+                <dl class="mt5 fr">
+                    <dt class="font-16">商务合作</dt>
+                    <dd class="mt5 font-14 color-666">139 5000 4249（卢先生）</dd>
+                </dl>
+            </div>
+            <div class="bts pt20 pb20 text-center color-999">Copyright © 2003-2016 小鱼网 版权所有，并保留所有权利。 闽公网安备35020302000108号 闽ICP备12013448号-2</div>
+        </div>
+    </div>
+    <!--end footer-->
+    <!--装修设计申请-->
+    <div id="decorationDesign" class="pop-cover yahei">
+        <div class="pop-wrap800">
+            <a class="pop-close" href="javascript:" onclick="$('.pop-cover').hide();">×</a>
+            <div>
+                <div class="text-center font-28">感谢您的申请</div>
+                <div class="text-center color-999">为了更好的为您服务，请完善您的装修信息</div>
+                <div class="mt40 step-note relative">
+                    <div class="step-progress-bg ulib-r5">
+                        <div class="step-progress ulib-r5"></div>
+                    </div>
+                    <ul class="step-progress-list text-center font-14 clear">
+                        <li>
+                            <i class="icon-circlegreen ulib-r100"></i>
+                            <div class="mt10 color-999">填写联系方式</div>
+                        </li>
+                        <li>
+                            <i class="icon-circlegreen ulib-r100"></i>
+                            <div class="mt10 color-green">完善装修信息</div>
+                        </li>
+                        <li>
+                            <i class="icon-circlegray ulib-r100"></i>
+                            <div class="mt10 color-999">选择靠谱商家</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear">
+                    <div class="fl con-340">
+                        <table class="pop-330tb font-14">
+                            <tbody>
+                                <tr>
+                                    <th><span class="color-red">*</span>小区名称</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您小区的名称</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>房屋户型</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:78px;">
+                                            <option>室</option>
+                                            <option>1室</option>
+                                            <option>2室</option>
+                                            <option>3室</option>
+                                            <option>4室</option>
+                                            <option>5室</option>
+                                        </select>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:78px;">
+                                            <option>厅</option>
+                                            <option>1厅</option>
+                                            <option>2厅</option>
+                                        </select>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:78px;">
+                                            <option>卫</option>
+                                            <option>1卫</option>
+                                            <option>2卫</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>装修预算</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:242px;">
+                                            <option>请选择您的装修预算</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>装修时间</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:242px;">
+                                            <option>请选择您的装修时间</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red">*</span>QQ</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您的 QQ 号码</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="fr con-220">
+                        <div class="font-16">上传户型图</div>
+                        <div class="mt5 color-999">针对不同户型，制定最适合您的方案</div>
+                        <div class="mt10">
+                            <div class="relative uploadinput">
+                                <span class="kongorange-btn ulib-r3 font-14">立即上传</span>
+                                <input class="uploadpic" type="file" />
+                            </div>
+                            <div class="relative uploadviewpic" style="display:none;">
+                                <a class="viewpic-close ulib-r100" href="javascript:">×</a>
+                                <img class="bds viewpic" src="" width="100" height="100" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt20 pt20 bts text-center"><a class="orange-btn inline-block font-16 ulib-r3" href="javascript:">立即提交</a><a class="ml15 gray-btn inline-block font-16 ulib-r3" href="javascript:">跳过</a></div>
+            </div>
+        </div>
+    </div>
+    <!--end 装修设计申请 -->
+    <!--橱柜设计申请-->
+    <div id="cupboardDesign" class="pop-cover yahei">
+        <div class="pop-wrap800">
+            <a class="pop-close" href="javascript:" onclick="$('.pop-cover').hide();">×</a>
+            <div>
+                <div class="text-center font-28">感谢您的申请</div>
+                <div class="text-center color-999">为了更好的为您服务，请完善您的装修信息</div>
+                <div class="mt40 step-note relative">
+                    <div class="step-progress-bg ulib-r5">
+                        <div class="step-progress ulib-r5"></div>
+                    </div>
+                    <ul class="step-progress-list text-center font-14 clear">
+                        <li>
+                            <i class="icon-circlegreen ulib-r100"></i>
+                            <div class="mt10 color-999">填写联系方式</div>
+                        </li>
+                        <li>
+                            <i class="icon-circlegreen ulib-r100"></i>
+                            <div class="mt10 color-green">完善装修信息</div>
+                        </li>
+                        <li>
+                            <i class="icon-circlegray ulib-r100"></i>
+                            <div class="mt10 color-999">选择靠谱商家</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="clear">
+                    <div class="fl con-340">
+                        <table class="pop-330tb font-14">
+                            <tbody>
+                                <tr>
+                                    <th><span class="color-red">*</span>小区名称</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您小区的名称</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>房屋户型</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:78px;">
+                                            <option>室</option>
+                                            <option>1室</option>
+                                            <option>2室</option>
+                                            <option>3室</option>
+                                            <option>4室</option>
+                                            <option>5室</option>
+                                        </select>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:78px;">
+                                            <option>厅</option>
+                                            <option>1厅</option>
+                                            <option>2厅</option>
+                                        </select>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:78px;">
+                                            <option>卫</option>
+                                            <option>1卫</option>
+                                            <option>2卫</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>装修预算</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:242px;">
+                                            <option>请选择您的装修预算</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>装修时间</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:242px;">
+                                            <option>请选择您的装修时间</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red">*</span>QQ</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您的 QQ 号码</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="fr con-220">
+                        <div class="font-16">上传户型图</div>
+                        <div class="mt5 color-999">针对不同户型，制定最适合您的方案</div>
+                        <div class="mt10">
+                            <div class="relative uploadinput">
+                                <span class="kongorange-btn ulib-r3 font-14">立即上传</span>
+                                <input class="uploadpic" type="file" />
+                            </div>
+                            <div class="relative uploadviewpic" style="display:none;">
+                                <a class="viewpic-close ulib-r100" href="javascript:">×</a>
+                                <img class="bds viewpic" src="" width="100" height="100" alt="#" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt20 pt20 bts text-center"><a class="orange-btn inline-block font-16 ulib-r3" href="javascript:">立即提交</a><a class="ml15 gray-btn inline-block font-16 ulib-r3" href="javascript:">跳过</a></div>
+            </div>
+        </div>
+    </div>
+    <!--end 橱柜设计申请 -->
+    <!--公益验房申请-->
+    <div id="houseInspection" class="pop-cover yahei">
+        <div class="pop-wrap800">
+            <a class="pop-close" href="javascript:" onclick="$('.pop-cover').hide();">×</a>
+            <div>
+                <div class="text-center font-28">感谢您的申请</div>
+                <div class="text-center color-999">为了更好的为您服务，请完善您的装修信息</div>
+                <div class="mt30 pt20 bts">
+                    <div class="con-340" style="margin:0 auto;">
+                        <table class="pop-330tb font-14">
+                            <tbody>
+                                <tr>
+                                    <th><span class="color-red">*</span>小区名称</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您小区的名称</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>验房时间</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:242px;">
+                                            <option>请选择您的验房时间</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red">*</span>QQ</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您的 QQ 号码</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt20 pt20 bts text-center">
+                    <p class="pb12 font-14 color-666">同一小区同时报名<span class="color-orange">满&nbsp;5&nbsp;户</span>即可开展公益验房活动</p>
+                    <a class="orange-btn inline-block font-16 ulib-r3" href="javascript:">立即提交</a><a class="ml15 gray-btn inline-block font-16 ulib-r3" href="javascript:">跳过</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end 公益验房申请 -->
+    <!--样房通道申请-->
+    <div id="modelHouses" class="pop-cover yahei">
+        <div class="pop-wrap800">
+            <a class="pop-close" href="javascript:" onclick="$('.pop-cover').hide();">×</a>
+            <div>
+                <div class="text-center font-28">感谢您的申请</div>
+                <div class="text-center color-999">为了更好的为您服务，请完善您的装修信息</div>
+                <div class="mt30 pt20 bts">
+                    <div class="con-340" style="margin:0 auto;">
+                        <table class="pop-330tb font-14">
+                            <tbody>
+                                <tr>
+                                    <th><span class="color-red">*</span>参与人数</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入参观人数</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red">*</span>QQ</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您的 QQ 号码</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red">*</span>小区名称</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您小区的名称</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red">*</span>面积</th>
+                                    <td>
+                                        <div class="relative">
+                                            <input class="reg-txt ulib-r3" type="text" value="">
+                                            <span class="inp-note">请输入您爱屋的面积</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><span class="color-red ">*</span>装修时间</th>
+                                    <td>
+                                        <select class="select-sty ulib-r3 font-14 yahei color-666" style="width:242px;">
+                                            <option>请选择您的装修时间</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt20 pt20 bts text-center">
+                    <p class="pb12 color-999">如报名人数过多，每期我们会优先筛选前15名报名的网友</p>
+                    <a class="orange-btn inline-block font-16 ulib-r3" href="javascript:">立即提交</a>
+                    <a class="ml15 gray-btn inline-block font-16 ulib-r3" href="javascript:">跳过</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--end 样房通道申请 -->
+    <!-- add by yyh 20170605  -->
+    <a class="zx-qa-entry-fixed" href="http://jiaju.xiaoyu.com/home/yuncle">装修问答</a>
+    <script>
+    $(function() {
+        $(window).on("scroll", function() {
+            if ($(this).scrollTop() > 200) {
+                $(".zx-qa-entry-fixed").fadeIn();
+            } else {
+                $(".zx-qa-entry-fixed").fadeOut();
+            }
+        })
+    })
+    </script>
+    <!-- add by yyh 20170605 -->
+
+
+ <!-- add by yyh 20180329 *******************************************************************************-->    
+    @@include("./views/_homeFormDialog.html")
+    <script type="text/javascript" src="./js/jquery.cookie.js"></script>
+    <script type="text/javascript">
+
+         //tab 选项卡
+    (function($) {
+        $(function() {
+            var $container = $("#J_home-sjybj-dialog");
+            var $bds = $container.find(".sjybj-tab-bd");
+            var $hds = $container.find(".sjybj-tab-hd a");
+            $hds.each(function(index, el) {
+
+                $(el).on("click", function(event) {
+                    event.preventDefault();
+                    var $this = $(this);
+                    var index = $hds.index(this);
+                    $this.addClass('active').siblings().removeClass('active');
+                    $bds.eq(index).addClass('active').siblings().removeClass('active');
+                })
+            });
+        })
+
+    })(jQuery);
+    (function($) {
+        $(function() {
+            var isOpen;
+            var $dialog = $("#J_home-sjybj-dialog");
+            var $mask = $("#J_home-sjybj-dialog-mask");
+            var $close = $("#J_home-sjybj-close");
+            //开发自行加cookie
+            // var dialogCookie=$.cookie('jzhomedialog');
+            $close.on("click", function() {
+                $dialog.removeClass('show');
+                $mask.removeClass('show');
+                countRandObj.start($dialog);
+            })
+            $(window).on("scroll", function() {
+                var scrollTop = $(window).scrollTop();
+                // if(scrollTop > 700 && !isOpen && !dialogCookie){
+                if (scrollTop > 700 && !isOpen) {
+                    $dialog.addClass('show');
+                    $mask.addClass('show');
+                    isOpen = true;
+                    //开始随机数
+                    countRandObj.start($dialog);
+                    // $.cookie('jzhomedialog',"jzhomedialog",{ expires: 30 });
+                }
+            })
+        })
+    })(jQuery)
+    </script>
+
+
+
+    @@include("./views/_homeFormFooter.html")
+
+</body>
+
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <title></title>
+    <script src="js/zepto.js"></script>
+    <script src="js/flexible2.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+    <div class="banner-entry">
+        <img src="./images/banner.jpg">
+    </div>
+    <div class="container section-form">
+        <div class="item">
+            <input type="text" class="ipt-text" placeholder="如何称呼" />
+        </div>
+        <div class="item">
+            <input type="text" class="ipt-text" placeholder="请输入手机号" />
+        </div>
+        <div>
+            <input type="submit" class="ipt-submit" value="获取方案" />
+        </div>
+        <p class="tip">已为<span>3258</span>位业主提供专业的设计方案与精准报价</p>
+    </div>
+    <div class="c-mfbj-scroll">
+        <ul class="list">
+            <li>张小姐 1分钟前免费获取4套专业专业设专业设专业设专业设设计方案</li>
+            <li>张小姐 2分钟前免费获取4套专业设计方案</li>
+            <li>张小姐 3分钟前免费获取4套专业设计方案</li>
+            
+        </ul>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        (function() {
+            var $mfbjScroll = $(".c-mfbj-scroll");
+            var $scrollElem = $mfbjScroll.find(".list");
+            var Timer;
+            var $lis = $mfbjScroll.children(".list").children('li');
+            var Top;
+            var index=0;
+
+            var len = $lis.length;
+            var h = $lis.eq(0).height();
+            if (!len) return;
+            var totalH = h * len;
+            $($scrollElem.html()).appendTo($scrollElem);
+            var scrolling = function() {
+
+                clearTimeout(Timer);
+                index++;
+                $scrollElem.animate({
+                    translate3d: '0,-'+h*index+'px,0'
+                }, 250, function() {
+                    Top = Math.abs(parseInt($scrollElem.css("top")));
+                    if (index >= len) {
+                        index=0;
+                        $scrollElem.animate({translate3d: '0,0,0'},0)
+                    }
+
+                });
+                Timer = setTimeout(scrolling, 3000)
+            }
+            setTimeout(scrolling, 3000)
+        })()
+
+
+    })
+    </script>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_1.jpg"></div>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_2.jpg"></div>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_3.jpg"></div>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_4.jpg"></div>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_5.jpg"></div>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_6.jpg"></div>
+    <div class="border-seat"></div>
+    <div class="section-img"><img src="./images/section_7.jpg"></div>
+    <ul class="fixed-bar-guide">
+        <li class="gohome"><a href="index.html"></a></li>
+        <li class="gotop"><a href="#gotop"></a></li>
+    </ul>
+    <script type="text/javascript">
+    (function() {
+        $(function() {
+            var $goTop = $(".gotop");
+            var throttle = function(fn, delay, atleast) {
+                var timer = null;
+                var previous = null;
+
+                return function() {
+                    var now = +new Date();
+
+                    if (!previous) previous = now;
+
+                    if (now - previous > atleast) {
+                        fn();
+                        // 重置上一次开始时间为本次结束时间
+                        previous = now;
+                    } else {
+                        clearTimeout(timer);
+                        timer = setTimeout(function() {
+                            fn();
+                        }, delay);
+                    }
+                }
+            }
+
+            var scrollTopDetect = throttle(function() {
+                var scrolltop = $(this).scrollTop();
+                if (scrolltop >= 500) {
+                    $goTop.addClass("active");
+                } else if (scrolltop <= 500) {
+                    $goTop.removeClass("active");
+                }
+            }, 200, 10);
+            $('<a name="gotop" style="visibility:hidden;"></a>').prependTo($("body"));
+            $(window).on("scroll", function() {
+                scrollTopDetect();
+            })
+        })
+    })()
+    </script>
+</body>
+
+</html>

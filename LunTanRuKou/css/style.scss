@@ -1,0 +1,121 @@
+@import "./scss/_normalize.scss";
+@import "./scss/_base.scss";
+
+@import "./scss/_funvar.scss";
+@import "./scss/_page-Common.scss";
+
+
+
+.list{
+	padding: 0 px2rem(30px);
+	li{
+		border-bottom: 1px solid #e5e5e5;
+		&:last-child{
+			border-bottom: none;
+		}
+		a{
+			display: block;
+			padding: px2rem(40px) 0;
+			position: relative;
+			min-height: px2rem(240px);
+
+		}
+		.pic{
+			width: px2rem(160px);
+			height: px2rem(160px);
+			overflow:hidden;
+			border-radius: 100%;
+			background-size: 100% 100%;
+			background-position: 0 0;
+			background-repeat: no-repeat;
+			position:absolute;
+			background-color:#fafafa;
+			border:1px solid #e3e3e3; 
+			
+			&.pic-1{
+				background-image:url("../images/icon_1.png"); 
+			}
+			&.pic-2{
+				background-image:url("../images/icon_2.png"); 
+			}
+			&.pic-3{
+				background-image:url("../images/icon_3.png"); 
+			}
+			&.pic-4{
+				background-image:url("../images/icon_4.png"); 
+			}
+			&.pic-5{
+				background-image:url("../images/icon_5.png"); 
+			}
+		}
+		.txt{
+			    position: absolute;
+			    left:px2rem(200px);
+			    top: 50%;
+			    right: 0;
+			    -webkit-transform: translate(0,-50%);
+			    -ms-transform: translate(0,-50%);
+			    -moz-transform: translate(0,-50%);
+
+		}
+		.name{
+			color:#333333;
+			@include font-dpr(18px); 
+		}
+		.desc{
+			color:#666666;
+			@include font-dpr(13px);
+			line-height: 1.4;
+			margin-top: px2rem(15px);  
+		}
+	}
+}
+
+
+.fixed-bar-guide {
+
+    position: fixed;
+    z-index: 100;
+    right: px2rem(30px);
+    bottom: px2rem(100px);
+    li {
+        width: px2rem(69px);
+        height: px2rem(69px);
+        overflow: hidden;
+        border-radius: 100%;
+        margin-bottom: px2rem(20px);
+        a {
+
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-size: 100% 100%;
+        }
+        &.gohome {
+            a {
+                background: url("../images/fixed_icon_1.png") no-repeat center center rgba(0, 0, 0, 0.2);
+                 background-size: 100% 100%;
+            }
+        }
+        &.goback {
+            a {
+                background: url("../images/fixed_icon_2.png") no-repeat center center rgba(0, 0, 0, 0.2);
+                 background-size: 100% 100%;
+            }
+        }
+        &.gototop {
+            
+            a {
+                 display:none;
+                background: url("../images/fixed_icon_3.png") no-repeat center center rgba(0, 0, 0, 0.2);
+                 background-size: 100% 100%;
+            }
+            &.active{
+                a{
+                    display:block;
+                }
+            }
+        }
+    }
+}
+

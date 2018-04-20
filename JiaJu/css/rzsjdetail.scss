@@ -1,0 +1,143 @@
+.com-sj-header{
+	position:relative;
+	padding:20px 0; 
+	.sj-pic{
+		width:110px;
+		height:110px;
+		line-height:110px;
+		overflow:hidden;
+		border:1px solid #e6e6e6;
+		padding:4px;
+		float:left;
+		text-align:center;
+		font-size:0;
+		margin-right:20px;
+		background:#fff;
+		img{
+			width:100%;
+			display:inline-block;
+			vertical-align:middle;
+		} 
+	}
+	.sj-name{
+		font-size:22px;
+		color:#000;
+	}
+	.sj-pj{
+		margin-top:5px;
+		font-size:14px;
+		height:25px;
+		li{
+			float:left;
+			&.pj-star{
+
+				.star{
+					margin-left:15px; 
+					display:inline-block;
+					vertical-align:middle;
+					width:92px;
+					height:15px;
+					margin-top:-2px;
+					background:url("../img/rezhengshangjia/star.png") no-repeat top center;
+					&.star-1{
+						background-position: 0 -15px;
+					}
+					&.star-2{
+						background-position: 0 -30px;
+					}
+					&.star-3{
+						background-position: 0 -45px;
+					}
+					&.star-4{
+						background-position: 0 -60px;
+					}
+					&.star-5{
+						background-position: 0 -75px;
+					}
+				}
+			}
+
+			&.pj-kb{
+				margin-left:20px;
+				label{
+					word-spacing:2px
+				}
+				b{
+					margin-left:15px;
+					color:#4eca77;
+					font-weight:normal;
+				}
+			}
+			
+		}
+	}
+	.sj-info{
+		font-size:14px;
+		color:#666666;
+		span{
+			margin-right:35px;
+		}
+	}
+	.sj-address{
+		margin-top:5px;
+		color:#666666;
+	}
+	.sj-handler{
+		position:absolute;
+		right:0;
+		top:15px;
+		.yybtn{
+			display:block;
+			width:184px;
+			height:43px;
+			line-height:43px;
+			text-align:center;
+			background:#17bf75;
+			color:#fff;
+			font-size:16px;
+			&:hover{
+				background:darken(#17bf75,5%);
+				text-decoration: none;
+			}
+		}
+		.count{
+			text-align:center;
+			margin-top:8px;
+			b{
+				color:#ff8a00;
+			   font-weight:normal;
+			}
+			
+		}
+	}
+}
+
+.com-sj-nav{
+	background:#1c1c1c;
+	
+	.list{
+		width:960px;
+		margin:0 auto; 
+		height:42px;
+		li{
+			float:left; 
+			a{
+				display:block; 
+				height:42px;
+				line-height:42px;
+				font-size:14px;
+				color:#fff;
+				padding:0 40px;
+				&:hover{
+					background:#444444;
+					text-decoration:none; 
+				}   
+			}
+			&.active{
+				a{
+					background:#444444;
+				}
+			}
+		} 
+	}   
+}

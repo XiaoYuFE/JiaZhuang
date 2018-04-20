@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="js/flexible.js"></script>
+    <script type="text/javascript" src="js/zepto.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="container">
+		<ul class="list">
+			<li>
+				<a href="http://m.xiaoyu.com/h5/quan/index?qid=38">
+					<span class="pic pic-1"></span>
+					<div class="txt">
+						<p class="name">装修讨论</p>
+						<p class="desc">与家装生活密切相关的话题或知识分享讨论，包括前期准备、设计施工、采购分享我要晒家、有话要说、居家生活等。</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="http://m.xiaoyu.com/h5/quan/index?qid=143">
+					<span class="pic pic-2"></span>
+					<div class="txt">
+					<p class="name">装修互助</p>
+					<p class="desc">解决装修会员所遇到的各类问题：设计求助、施工找人、采购咨询、材料转让等。</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="http://m.xiaoyu.com/h5/quan/index?qid=142">
+					<span class="pic pic-3"></span>
+					<div class="txt">
+					<p class="name">家装日记</p>
+					<p class="desc">家装会员可发布自己的装修心得、分享装修点滴，和其他家装会员进行沟通交流，记录装修全过程。</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="http://m.xiaoyu.com/h5/quan/index?qid=190">
+					<span class="pic pic-4"></span>
+					<div class="txt">
+					<p class="name">设计论坛</p>
+					<p class="desc">专项发布各类家居装饰设计公司商家的产品信息及优惠活动。</p>
+					</div>
+				</a>
+			</li>
+			<li>
+				<a href="http://m.xiaoyu.com/h5/quan/index?qid=191">
+					<span class="pic pic-5"></span>
+					<div class="txt">
+					<p class="name">家装超市</p>
+					<p class="desc">专项发布各类家居建材品牌商家的产品信息及优惠活动。</p>
+					</div>
+				</a>
+			</li>
+		</ul>
+		
+	</div>
+
+	<ul class="fixed-bar-guide">
+    <li class="gohome"><a href="/home/index"></a></li>
+    <li class="gototop"><a href="#gotop"></a></li>
+</ul>
+<script type="text/javascript">
+(function() {
+    $(function() {
+        var $goTop=$(".gototop");
+        var throttle = function(fn, delay, atleast) {
+            var timer = null;
+            var previous = null;
+
+            return function() {
+                var now = +new Date();
+
+                if (!previous) previous = now;
+
+                if (now - previous > atleast) {
+                    fn();
+                    // 重置上一次开始时间为本次结束时间
+                    previous = now;
+                } else {
+                    clearTimeout(timer);
+                    timer = setTimeout(function() {
+                        fn();
+                    }, delay);
+                }
+            }
+        }
+
+        var scrollTopDetect = throttle(function() {
+            var scrolltop = $(this).scrollTop();
+            if (scrolltop >= 500) {
+                $goTop.addClass("active");
+            } else if(scrolltop <= 500){
+                $goTop.removeClass("active");
+            }
+        },200,10);
+        $('<a name="gotop" style="visibility:hidden;"></a>').prependTo($("body"));
+        $(window).on("scroll",function(){
+            scrollTopDetect();
+        })  
+    })
+})()
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!-- 通用表单  网站多个地方公用  start*************************************** -->
+<div class="c-mfbj-forms">
+    <p class="txt-1">免费抢4套设计方案与报价 </p>
+    <p class="txt-2">今天仅剩<span class="num">88</span>个名额</p>
+    <div class="form-box">
+        <div class="item-cell">
+            <label class="lab">您的姓名</label>
+            <input type="ipt-text" class="ipt-text" />
+        </div>
+        <div class="item-cell">
+            <label class="lab">请输入手机号码</label>
+            <input type="text" class="ipt-text" />
+        </div>
+        <div class="item-cell item-submit">
+            <input type="submit" class="ipt-submit" value="获得方案">
+            <i class="icon-palm"></i>
+        </div>
+    </div>
+    <p class="txt-3">已为<span class="num">25864</span>位业主提供专业设计方案</p>
+    <div class="c-mfbj-scroll">
+        <ul class="list">
+            <li>张小姐 1分钟前免费获取4套专业专业设专业设专业设专业设设计方案</li>
+            <li>张小姐 2分钟前免费获取4套专业设计方案</li>
+            <li>张小姐 3分钟前免费获取4套专业设计方案</li>
+            <li>张小姐 4分钟前免费获取4套专业设计方案</li>
+        </ul>
+    </div>
+    <script type="text/javascript">
+    $(function() {
+        (function(){
+            var $mfbjScroll=$(".c-mfbj-scroll");
+            var $scrollElem=$mfbjScroll.find(".list");
+            var Timer;
+            var $lis=$mfbjScroll.children(".list").children('li');
+            var Top;
+
+            var len=$lis.length;
+            var h=$lis.eq(0).height();
+            if(!len) return;
+            var totalH=h*len;
+            $($scrollElem.html()).appendTo($scrollElem);
+            var scrolling=function(){
+                clearTimeout(Timer);
+                $scrollElem.animate({
+                    top: '-='+h
+                },250,function(){
+                    Top=Math.abs(parseInt($scrollElem.css("top")));
+                    if(Top >=totalH){
+                        $scrollElem.css("top",0)
+                    }
+                   
+                });
+                Timer=setTimeout(scrolling,3000)
+            }
+            setTimeout(scrolling,3000)
+
+
+        })()
+        $(".c-mfbj-forms .item-cell .lab").on("click", function() {
+            var $this = $(this);
+            $this.hide();
+            $this.siblings(".ipt-text").focus();
+        });
+        $(".c-mfbj-forms .item-cell .ipt-text").on("blur", function() {
+            var $this = $(this);
+            if (!$.trim($this.val())) {
+                $this.siblings(".lab").show();
+            }
+        });
+        //判处弹出框那个提交按钮
+        $(".c-mfbj-forms").not(".J_sth").find(".ipt-submit").on("click", function() {
+                layer.open({
+                    type:1,
+                    title:false,
+                    shadeClose:true,
+                    area:["376px"],
+                    content:$(".c-mfbj-success-wrap")
+                })
+        });
+
+
+    })
+    </script>
+</div>
+
+
+
+<!-- 通用表单  网站多个地方公用  end *************************************** -->

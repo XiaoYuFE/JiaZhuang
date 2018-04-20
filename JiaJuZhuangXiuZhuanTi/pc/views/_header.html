@@ -1,0 +1,138 @@
+<link rel="stylesheet" type="text/css" href="http://bbs.xmfish.com/apps/rt/www/header.css">
+<script language="javascript">
+jQuery(document).ready(function() {
+    jQuery('.search-txt').each(function() {
+        if (jQuery(this).val()) {
+            jQuery('.header-label').hide();
+        } else {
+            jQuery('.header-label').click(function() {
+                jQuery(this).hide().siblings('form').find('.search-txt').focus();
+            });
+            jQuery('.search-txt').focus(function() {
+                jQuery(this).parent().siblings('.header-label').hide();
+            });
+            jQuery('.search-txt').blur(function() {
+                var txt = jQuery(this).val();
+                if (txt) {
+                    jQuery(this).parent().siblings('.header-label').hide();
+                } else {
+                    jQuery(this).parent().siblings('.header-label').show();
+                }
+            });
+        }
+    });
+});
+
+jQuery(document).ready(function() {
+    jQuery('.header1 .sd-wrap').hover(function() {
+        jQuery(this).addClass('active');
+    }, function() {
+        jQuery(this).removeClass('active');
+    });
+    jQuery('.switch_city .sct,.switch_city .city_list').hover(
+        function() {
+            jQuery('.switch_city .city_list').show();
+        },
+        function() {
+            jQuery('.switch_city .city_list').hide();
+        });
+});
+
+function changeSearch(keyword) {
+    if (keyword != '') {
+        keyword = keyword.substring(0, 8);
+        var str = '<ol><li><a href="http://s.xmfish.com/s?keyword=' + keyword + '&type=thread">搜"<span class="serious">' + keyword + '</span>"相关的帖子</a></li><li><a href="http://s.xmfish.com/s?keyword=' + keyword + '&type=user">搜"<span class="serious">' + keyword + '</span>"相关的人</a></li><li><a href="http://s.xmfish.com/s?keyword=' + keyword + '&type=biz">搜"<span class="serious">' + keyword + '</span>"相关的商家</a></li></ol>';
+        jQuery('#search-down .sd-panel').html(str);
+        jQuery('#search-down .sd-panel').show();
+    } else {
+        jQuery('#search-down .sd-panel').hide();
+    }
+}
+</script>
+<div class="header1" id="rt-header">
+    <div class="wrap">
+        <ul class="fl">
+            <li class="city sd-wrap"><a class="nav-link" href="http://www.xmfish.com">厦门小鱼<i></i></a>
+                <div class="sd-panel">
+                    <ol>
+                        <li><a class="food" href="http://food.xmfish.com/" target="_blank">美食</a></li>
+                        <li><a class="home" href="http://home.xmfish.com/" target="_blank">家居</a></li>
+                        <li><a class="marry" href="http://marry.xmfish.com/" target="_blank">婚庆</a></li>
+                        <li><a class="house" href="http://house.xmfish.com/" target="_blank">房产</a></li>
+                        <li><a class="car" href="http://auto.xmfish.com/" target="_blank">汽车</a></li>
+                        <li><a class="baby" href="http://bbs.xmfish.com/thread-htm-fid-75.html" target="_blank">亲子</a></li>
+                        <li><a class="lady" href="http://lady.xiaoyu.com/" target="_blank">女性</a></li>
+                        <li><a class="tourism" href="http://travel.xiaoyu.com/" target="_blank">旅游</a></li>
+                    </ol>
+                </div>
+            </li>
+            <li><a class="nav-link" href="http://bbs.xmfish.com/">社区</a></li>
+            <li><a class="nav-link" href="http://info.xmfish.com/">分类</a></li>
+            <li><a class="nav-link" href="http://app.xmfish.com/" target="_blank">手机</a></li>
+        </ul>
+        <div class="search ulib-r3" id="search-down">
+            <form method="get" action="http://s.xmfish.com/s" name="top_search" id="top_search">
+                <input type="hidden" name="type" value="thread">
+                <input type="hidden" name="chartype" value="utf8">
+                <input onkeyup="changeSearch(jQuery(this).val());" class="search-txt fl slight" type="text" value="" name="keyword"><a class="search-btn fr" href="javascript:">搜索</a></form>
+            <label class="header-label">搜帖子、用户或商家...</label>
+            <style>
+            .header-label {
+                position: absolute;
+                margin-top: 2px;
+                margin-left: 5px;
+                left: 0;
+                color: #ccc;
+                display: block;
+                width: 130px;
+                cursor: text;
+                font-size: 12px;
+            }
+            </style>
+            <div class="sd-panel" style="display:none;"></div>
+        </div>
+        <ul class="fr" style="z-index:100;position: relative;">
+            <li class="sd-wrap"><a class="nav-link" href="http://bbs.xmfish.com/message.php">消息<i></i></a>
+                <div class="sd-panel sd-w125">
+                    <ol>
+                        <li><a class="sd-w125 sd-clear" href="http://bbs.xmfish.com/message.php?type=sms" target="_blank"><span class="fl">查看私信</span><span id="user_newpm_num" class="fr sd-num-tip"></span></a></li>
+                        <li><a class="sd-w125 sd-clear" href="http://bbs.xmfish.com/message.php?type=notice" target="_blank"><span class="fl">查看通知</span><span id="user_notice_num" class="fr sd-num-tip"></span></a></li>
+                        <li><a class="sd-w125 sd-clear" href="http://bbs.xmfish.com/u.php?a=friend&amp;type=attentioned" target="_blank"><span class="fl">查看粉丝</span><span id="user_newfan_num" class="fr sd-num-tip"></span></a></li>
+                        <li><a class="sd-w125 sd-clear" href="http://bbs.xmfish.com/apps.php?q=weibo&amp;do=refer" target="_blank"><span class="fl">查看@我</span><span id="user_atme_num" class="fr sd-num-tip"></span></a></li>
+                    </ol>
+                </div>
+            </li>
+            <li class="sd-wrap"><a class="nav-link nav-link-account" href="http://bbs.xmfish.com/u.php">散崖<i></i></a>
+                <div class="sd-panel">
+                    <ol>
+                        <li><a href="http://bbs.xmfish.com/u.php" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;个人中心&quot;,&quot;1&quot;,&quot;&quot;]);">个人中心</a></li>
+                        <li><a href="http://bbs.xmfish.com/u.php?uid=1956728" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;我的主页&quot;,&quot;1&quot;,&quot;&quot;])">我的主页</a></li>
+                        <li><a href="http://bbs.xmfish.com/apps.php?q=groups" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;我的群组&quot;,&quot;1&quot;,&quot;&quot;])">我的群组</a></li>
+                        <li><a href="http://bbs.xmfish.com/apps.php?q=article" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;我的帖子&quot;,&quot;1&quot;,&quot;&quot;])">我的帖子</a></li>
+                        <li><a href="http://bbs.xmfish.com/apps.php?q=collection" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;我的收藏&quot;,&quot;1&quot;,&quot;&quot;])">我的收藏</a></li>
+                        <li><a href="http://bbs.xmfish.com/jobcenter.php" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;我的任务&quot;,&quot;1&quot;,&quot;&quot;])">我的任务</a></li>
+                        <li><a href="http://bbs.xmfish.com/profile.php?action=modify" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;帐号设置&quot;,&quot;1&quot;,&quot;&quot;])">帐号设置</a></li>
+                        <li><a href="http://bbs.xmfish.com/u.php?a=friend&amp;type=my" onclick="_czc.push([&quot;_trackEvent&quot;,&quot;小鱼网&quot;,&quot;会员下拉&quot;,&quot;好友管理&quot;,&quot;1&quot;,&quot;&quot;])">好友管理</a></li>
+                        <li><a href="http://www.xiaoyu.com/logout?url=http://i.dev.xmfish.com/2016/ymj">退出</a></li>
+                    </ol>
+                </div>
+            </li>
+            <!--/end .sd-wrap-->
+        </ul>
+        <div id="notice-buddle-tip" class="ulib-r5 ulib-sg"><a class="btn-close" id="notice-buddle-close" href="javascript:">知道了</a>
+            <p class="hidden"><a href="http://bbs.xmfish.com/message.php?type=notice&amp;action=unread" target="_blank" id="seeNotice_nt">你有<strong class="serious" id="tipsNum_nt">0</strong>个系统通知</a></p>
+            <p class="hidden"><a href="http://bbs.xmfish.com/apps.php?q=weibo&amp;do=refer" id="seeNotice_at">你有<strong class="serious" id="tipsNum_at">0</strong>个@我的</a></p>
+            <p class="hidden"><a href="http://bbs.xmfish.com/message.php?type=sms&amp;action=unread" id="seeNotice_pm">你有<strong class="serious" id="tipsNum_pm">0</strong>条私信</a></p>
+            <p class="hidden"><a href="http://u.xmfish.com/comments" id="seeNotice_cm">你有<strong class="serious" id="tipsNum_cm">0</strong>个评论</a></p>
+            <p class="hidden"><a href="http://bbs.xmfish.com/u.php?a=friend&amp;type=attentioned" id="seeNotice_fs">你有<strong class="serious" id="tipsNum_fs">0</strong>个新增粉丝</a></p>
+        </div>
+    </div>
+</div>
+<div id="fish-top-skin"></div>
+<span class="xmfish-theme"></span>
+
+<!--  -->
+
+<!--  -->
+</div>
+

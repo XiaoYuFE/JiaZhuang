@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>设计师详情</title>
+    <link rel="stylesheet" type="text/css" href="css/home.css">
+    <link rel="stylesheet" type="text/css" href="css/shejishi.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/layer/layer.js"></script>
+</head>
+
+<body class="yahei">
+    <!-- ****************** 头部start  *********************-->
+    @@include("./views/_headertop.html")
+    <!-- ****************** 头部end  ***********************-->
+    <!-- ****************** 搜索 start  ***********************-->
+    @@include("./views/_search.html")
+    <!-- ****************** 搜索 end  ***********************-->
+    <!-- ****************** 导航 start  ***********************-->
+    @@include("./views/_nav.html")
+    <!-- ****************** 导航 end  ***********************-->
+    <div class="zsjs-bg">
+        <div class="wrap">
+            <!-- ****************** 面包导航 start  *********************-->
+            <div class="pt15 pb15">
+                <a class="color-999" href="#" target="_blank">小鱼家装</a><span class="ml5 mr5 color-999">&gt;</span><a class="color-999" href="#" target="_blank">设计师</a><span class="ml5 mr5 color-999">&gt;</span><span class="color-green">周孝安设计事务所</span>
+            </div>
+            <!-- ****************** 面包导航 end  ***********************-->
+            <!-- ******************头像 start ******************-->
+            <div class="zsjs-avatar-box">
+                <div class="avatar">
+                    <img src="./upload/zsjs_avatar.jpg">
+                </div>
+                <p class="cname">周孝安设计事务所</p>
+                <div class="ctags">
+                    <a href="#">家居住宅</a>
+                    <a href="#">办公室</a>
+                    <a href="#">酒店</a>
+                    <a href="#">餐厅</a>
+                    <a href="#">运动空间</a>
+                </div>
+                <div class="blend-py">
+                    <span class="price"><b>200-300</b>元/㎡</span>
+                    <a href="index.php?id=1" class="sjs-btn btn-success" data-roler="orderdialog">预约咨询</a>
+                </div>
+                <span class="address">思明区</span>
+            </div>
+            <!-- ******************头像 end  ******************-->
+
+            <div class="zsjs-sjs-tab1">
+                <a href="javascript:void(0)" class="active" data-roler="tab" data-group="opus-tab-hd" data-target="#J_sjs-opus">作品(10)</a>
+                <a href="javascript:void(0)"  data-roler="tab" data-target="#J_sjs-intro" data-group="opus-tab-hd">资料</a>
+            </div>
+            <div class="pb40">
+            
+            <!-- 设计师作品 start -->
+             @@include("./_SheJiShi_XiangQing_ZuoPin.html")
+            <!-- 设计师作品 end -->
+
+             <!-- 设计师资料 start -->
+             @@include("./_SheJiShi_XiangQing_ZiLiao.html")
+            <!-- 设计师资料 end -->
+            </div>
+        </div>
+    </div>
+
+
+    <!-- ****************** footer start  ***********************-->
+     @@include("./views/_footer.html")
+     <!-- ****************** footer start  ***********************-->
+
+
+<!-- ************** 预约弹出框 start  多个页面公用 做成公共模块****************-->
+    @@include("./views/_orderForm.html")
+<!-- ************** 预约弹出框 end 多个页面公用 ****************-->
+
+     <script type="text/javascript">
+        (function(){
+            $(function(){
+                var $relateBd=$('[data-group="opus-tab-bd"]');
+                var $relateHd=$('[data-group="opus-tab-hd"]');
+                $(document).on("click",'[data-roler="tab"]',function(e){
+                    var $this=$(this);
+                    var target=$this.attr('data-target');
+                    $relateHd.removeClass("active");
+                    $this.addClass('active');
+                    $relateBd.hide();
+                    $(target).show();
+                 })
+            })
+        })()
+     </script>
+</body>
+</html>

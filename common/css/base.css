@@ -1,0 +1,23 @@
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border-style:none;}
+html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,code,del,dfn,em,img,q,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,textarea,input[type="text"]{font-size:100%;vertical-align:baseline;}
+input{border:none;padding:0;margin:0;}
+body{font:normal normal normal 12px/1.6 normal;color:#333;}
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block;}
+audio,canvas,video{display:inline-block;*display:inline;*zoom:1;}
+audio:not([controls]){display:none;}[hidden]{display:none;}
+*{-webkit-text-size-adjust:none;}
+*:focus{outline:none;}
+a{color:#333;text-decoration:none;}
+a:focus,input:focus{-moz-outline-style:none;outline-style:none;}
+a:hover{text-decoration:none;}
+del{text-decoration:line-through;}
+table{border-collapse:collapse;border-spacing:0;}
+ul,ol{list-style:none;}
+textarea{resize:none;}
+img{vertical-align:middle;}
+.clear:before,.clear:after{content:"";display:table;}
+.clear:after{clear:both;}
+.clear{zoom:1;}
+.yahei{font-family: "Microsoft Yahei","微软雅黑",Tahoma,Arial,Helvetica,STHeiti;}
+.fl{ float:left; }
+.fr{ float:right;}

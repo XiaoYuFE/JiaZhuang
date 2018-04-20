@@ -1,0 +1,31 @@
+<div class="sjybj-zxfn-form">
+            <div class="wrap">
+                <div class="form-box">
+                    <span class="icon-man"></span>
+                    <div class="form">
+                        <input type="text" class="ipt-text mr10" placeholder="请输入您的称呼" />
+                        <input type="text" class="ipt-text mr10" placeholder="请输入您的手机号码" />
+                        <input type="submit" class="ipt-submit" value="立即免费申请">
+                    </div>
+                </div>
+            </div>
+</div>
+<div class="sjybj-zxfn-form-seat"></div>
+
+<script type="text/javascript">
+        (function($){
+            $(function(){
+                var offsetTop=$(".sjybj-banner").eq(0).offset().top+471;
+                var $form=$(".sjybj-zxfn-form");
+                $(window).on("scroll",function(){
+                    var scrollTop=$(this).scrollTop();
+                    if(scrollTop >=offsetTop){
+                        $form.addClass('active');
+                    }else{
+                        $form.removeClass('active')
+                    }
+
+                })
+            })
+        })(jQuery)
+</script>
