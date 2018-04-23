@@ -1,0 +1,380 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>小鱼家居</title>
+<link href="http://jiaju.xiaoyu.com/css/home/home_xm.css" rel="stylesheet" type="text/css" />
+<link href="css/myhome.css" rel="stylesheet" type="text/css" />
+<style type="">
+.nav-list li a.nav-item{padding:8px 34px 6px 34px;}
+.nav-list li.nav-more a.nav-item{width:135px;}
+.nav-list li .nav-dropdown{width:133px;margin-left:-68px;}
+</style>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script>
+
+$(document).ready(function(){
+		
+	jQuery(".hth-pin,.sc-select,.nav-more").hover(function(){
+		jQuery(this).addClass("active");
+	},function(){
+		jQuery(this).removeClass("active");
+	});
+	
+	jQuery(".sc-sort-list>li").find('a').click(function(){
+		jQuery(".sc-sort>span.color-666").html(jQuery(this).text());
+		jQuery('.sc-select').removeClass("active");
+	});
+	
+	jQuery('.region-list>dd>a').click(function(){
+		jQuery(this).addClass('active').siblings('a').removeClass('active');
+	});
+	
+	/* 输入框默认提示*/
+	jQuery(".sc-inp,.reg-txt").each(function(){
+
+		if(jQuery(this).val()){
+			jQuery(this).siblings(".inp-note").hide();
+		}else{
+			jQuery(this).siblings(".inp-note").click(function(){
+				jQuery(this).hide().siblings("input").focus();
+			});
+		}
+		jQuery(this).focus(function(){
+			jQuery(this).siblings(".inp-note").hide();
+		});
+		jQuery(this).blur(function(){
+			var txt = jQuery(this).val();
+			if(txt){
+				jQuery(this).siblings(".inp-note").hide();
+			}else{
+				jQuery(this).siblings(".inp-note").show();
+			}
+		});
+	});
+	/* end 输入框默认提示*/
+	
+});
+
+</script>
+</head>
+<body class="yahei">
+
+<!--头部-->
+<div class="home-topheader">
+	<div class="wrap clear">
+    	<div class="fl clear">
+        	<div class="fl relative hth-pin mr30"><a class="hth-lk" href="http://www.xmfish.com/" target="_blank">返回小鱼网首页</a></div>
+            <div class="fl relative hth-pin mr30">
+            	<a class="hth-lk" href="javascript:"><i class="icon icon-weixin"></i>家居微信</a>
+                <div class="hth-dropdown wxcode-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <div class="text-center pt8 pb8"><img src="img/weixin-code.jpg" width="120" height="120" alt="小鱼家居" /></div>
+                </div>
+            </div>
+            <div class="fl relative hth-pin mr30"><a class="hth-lk" href="javascript:"><i class="icon icon-weibo"></i>家居微博</a></div>
+            <div class="fl relative hth-pin"><a class="hth-lk" href="javascript:"><i class="icon icon-download"></i>下载小鱼客户端</a></div>
+        </div>
+        <div class="fr hth-right clear">
+        	<div class="fl relative hth-pin"><a class="hth-lk" href="#" target="_blank">家居商家入驻</a></div>
+            <div class="fl relative hth-pin ml30">
+            	<a class="hth-lk" href="javascript:">家居中心<i class="icon-grayarrow"></i></a>
+                <div class="hth-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <ul class="hth-menu">
+                    	<li><a href="#" target="_blank">家装招标</a></li>
+                        <li><a href="#" target="_blank">橱柜招标</a></li>
+                        <li><a href="#" target="_blank">合同审核</a></li>
+                        <li><a href="#" target="_blank">我的活动</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl relative hth-pin ml30">
+            	<a class="hth-lk" href="javascript:">消息<i class="icon-grayarrow"></i></a>
+                <div class="hth-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <ul class="hth-menu text-center">
+                    	<li><a href="#" target="_blank">私信</a></li>
+                        <li><a href="#" target="_blank">通知</a></li>
+                        <li><a href="#" target="_blank">粉丝</a></li>
+                        <li><a href="#" target="_blank">@我</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl relative hth-pin ml30">
+            	<a class="hth-lk color-orange" href="javascript:">Deweor<i class="icon-orangearrow"></i></a>
+                <div class="hth-dropdown">
+                	<i class="icon-dropdownarrow-wrap"></i>
+                    <i class="icon-dropdownarrow"></i>
+                    <ul class="hth-menu text-center">
+                    	<li><a href="#" target="_blank">论坛中心</a></li>
+                        <li><a href="#" target="_blank">论坛主页</a></li>
+                        <li><a href="#" target="_blank">我的帖子</a></li>
+                        <li><a href="javascript:">退出</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="fl relative hth-pin ml30"><a class="hth-lk" href="http://bbs.xmfish.com/login.php" target="_blank">请登录</a></div>
+            <div class="fl relative hth-pin ml30"><a class="hth-lk color-orange" href="http://www.xiaoyu.com/register" target="_blank">注册</a></div>
+        </div>
+    </div>
+</div>
+<!--end 头部-->
+<!--搜索-->
+<div class="wrap search-wrap clear">
+    <a class="fl home-logo" href="/" target="_parent">小鱼家居</a>
+    <div class="fl sc-panel clear">
+    	<div class="fl sc-con clear">
+        	<div class="fl sc-select relative">
+            	<a class="sc-sort text-center" href="javascript:void(0)"><span class="color-666">装修日记</span><i class="icon-scarrow"></i></a>
+                <ul class="sc-sort-list">
+                	<li><a href="javascript:void(0)">装修日记</a></li>
+                    <li><a href="javascript:void(0)">装修讨论</a></li>
+                    <li><a href="javascript:void(0)">家装图库</a></li>
+                    <li><a href="javascript:void(0)">设计公司</a></li>
+                    <li><a href="javascript:void(0)">家装建材</a></li>
+                </ul>
+            </div>
+            <div class="fl relative"><input class="sc-inp yahei" type="text" /><span class="inp-note">请输入...</span></div>
+        </div>
+        <button class="fl sc-btn yahei">搜索</button>
+    </div>
+</div>
+<!--end 搜索-->
+<!--导航-->
+<div class="nav-panel">
+	<div class="wrap">
+    	<ul class="nav-list clear">
+            <li class="fl"><a class="nav-item" href="/home/index">首页</a></li>
+            <li class="fl"><a class="nav-item" href="/home/jzbao">设计与报价<span class="nav-redtip">免费</span></a></li>
+            <li class="fl"><a class="nav-item" href="/home/brand/case">装修图库</a></li>
+            <li class="fl active"><a class="nav-item" href="/home/brand/case">找我家</a></li>
+            <li class="fl"><a class="nav-item" href="http://bbs.xmfish.com/thread-htm-fid-160.html">家装日记</a></li>
+            <li class="fl nav-more">
+                <a class="nav-item" href="javascript:">装修公司<i class="icon-navarrow"></i></a>
+                <div class="nav-dropdown">
+                    <a href="/home/biz?act=sheji">认证商家</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-384.html" target="_blank">设计论坛</a>
+                    <a href="/home/brand/activity?from=sj">优惠活动</a>
+                </div>
+            </li>
+            <li class="fl nav-more ">
+                <a class="nav-item" href="javascript:">建材商家<i class="icon-navarrow"></i></a>
+                <div class="nav-dropdown">
+                    <a href="/home/biz?act=jiancai">认证商家</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-153.html" target="_blank">建材论坛</a>
+                    <a href="/home/brand/activity?from=jc">优惠活动</a>
+                    <a href="/home/brand/goods?from=jc">建材超市</a>
+                </div>
+            </li>
+            <li class="fr nav-more">
+                <a class="nav-item" href="javascript:">装修论坛<i class="icon-navarrow"></i></a>
+                <div class="nav-dropdown">
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-160.html" target="_blank">家装日记</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-85.html" target="_blank">装修讨论</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-119.html" target="_blank">家装互助</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-384.html" target="_blank">设计论坛</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-153.html" target="_blank">建材论坛</a>
+                    <a href="http://bbs.xmfish.com/thread-htm-fid-85-type-967.html#tabA" target="_blank">居家生活</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--end 导航-->
+
+<div class="wrap pb20"> 
+	<!--子导航-->
+	<div class="pt10 pb10"><a class="color-999" href="#" target="_blank">小鱼家装</a><span class="ml5 mr5 color-999">></span><a class="color-999" href="#" target="_blank">找我家</a><span class="ml5 mr5 color-999">></span><span class="color-green">装修案例</span></div>
+     
+  	<div class="mt10 bds">
+    	<div class="pt20 pl20 pr20 pb20 clear">
+        	<div class="fl"><img src="upload/v-1.jpg" width="320" height="198" alt="" /></div>
+            <div class="fl pl20 con-480">
+            	<div class="clear"><span class="fl font-26">古龙御景</span><span class="fl bg-orange mt10 ml5 pt1 pb1 pl5 pr5 font-14 color-white ulib-r3">集美</span></div>
+                <table class="estate-tb mt5 font-14">
+                	<tbody>
+                    	<tr>
+                        	<th>地址：</th>
+                            <td>集美滨海大道西北侧、集美大桥以北</td>
+                        </tr>
+                        <tr>
+                        	<th>楼盘介绍：</th>
+                            <td><div class="line-clamp-2">古龙御景位于厦门市集美区滨海大道西北侧、集美大桥以北，项目共分两期开发，一期工程占地142056.286平 ... <a class="color-green" href="#" target="_blank">查看更多</a></div></td>
+                        </tr>
+                        <tr>
+                        	<th>绿化率：</th>
+                            <td>39%</td>
+                        </tr>
+                        <tr>
+                        	<th>容积率：</th>
+                            <td>3.30</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="fr mt15 pl30 pt30 pb40 bls con-160">
+            	<div>
+                	<span class="font-20 color-orange">17760人</span>
+                    <span class="color-666">查看了该楼盘</span>
+                </div>
+                <div class="pb20">
+                <a class="mt5 orange-btn font-16 ulib-r3" href="javascript:" onclick="$('#decorationDesign').show();"><p class="pt2 pb2">申请免费户型设计</p></a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="mt20">
+        	<ul class="bbs estate-nav pl20 text-center font-18">
+            	<li><a href="homepage.html" target="_blank">楼盘主页</a></li>
+                <li class="active"><a href="case.html" target="_blank">装修案例</a></li>
+                <li><a href="diary.html" target="_blank">家装日记</a></li>
+                <li><a href="detail.html" target="_blank">楼盘详情</a></li>
+                <li><a href="picture.html" target="_blank">楼盘图片</a></li>
+            </ul>
+        </div>
+        <div class="pt20 pb20 pl20 pr20">
+        	<div class="pb5 clear font-14">
+            	<div class="fl"><b class="color-green">装修案例</b><span class="ml5">(<span class="color-orange">49</span>)</span></div>
+                <a class="fr color-999" href="#" target="_blank">更多></a>
+            </div>
+            <ul class="bbs">
+            	<li class="bts pt15 pb15 pr20 clear">
+                	<div class="fl"><a href="#" target="_blank"><img src="upload/v-1.jpg" width="200" height="124" alt="" /></a></div>
+                    <div class="fl pl20 con-670">
+                    	<a class="mt5 font-18" href="#" target="_blank">古龙御景<span class="bg-orange ml5 pt1 pb1 pl5 pr5 font-14 color-white ulib-r3">集美</span></a>
+                        <div class="mt15 color-666">本设计方案由 天玺装饰 提供</div>
+                        <div class="color-666">本设计方案由 陈艳 设计</div>
+                        <div class="mt15 font-14">
+                            <span>二室</span>
+                            <span class="ml15">北欧</span>
+                            <span class="ml15 color-orange">12万-18万</span>
+                        </div>
+                    </div>
+                    <div class="mt40"><a class="fr mt5 green-btn2 pt5 pb5 pl30 pr30 font-16 ulib-r3" href="javascript:" onclick="$('#decorationDesign').show();">帮我设计</a></div>
+                </li>
+                <li class="bts pt15 pb15 pr20 clear">
+                	<div class="fl"><a href="#" target="_blank"><img src="upload/v-1.jpg" width="200" height="124" alt="" /></a></div>
+                    <div class="fl pl20 con-670">
+                    	<a class="mt5 font-18" href="#" target="_blank">古龙御景<span class="bg-orange ml5 pt1 pb1 pl5 pr5 font-14 color-white ulib-r3">集美</span></a>
+                        <div class="mt15 color-666">本设计方案由 天玺装饰 提供</div>
+                        <div class="color-666">本设计方案由 陈艳 设计</div>
+                        <div class="mt15 font-14">
+                            <span>二室</span>
+                            <span class="ml15">北欧</span>
+                            <span class="ml15 color-orange">12万-18万</span>
+                        </div>
+                    </div>
+                    <div class="mt40"><a class="fr mt5 green-btn2 pt5 pb5 pl30 pr30 font-16 ulib-r3" href="javascript:" onclick="$('#decorationDesign').show();">帮我设计</a></div>
+                </li>
+                <li class="bts pt15 pb15 pr20 clear">
+                	<div class="fl"><a href="#" target="_blank"><img src="upload/v-1.jpg" width="200" height="124" alt="" /></a></div>
+                    <div class="fl pl20 con-670">
+                    	<a class="mt5 font-18" href="#" target="_blank">古龙御景<span class="bg-orange ml5 pt1 pb1 pl5 pr5 font-14 color-white ulib-r3">集美</span></a>
+                        <div class="mt15 color-666">本设计方案由 天玺装饰 提供</div>
+                        <div class="color-666">本设计方案由 陈艳 设计</div>
+                        <div class="mt15 font-14">
+                            <span>二室</span>
+                            <span class="ml15">北欧</span>
+                            <span class="ml15 color-orange">12万-18万</span>
+                        </div>
+                    </div>
+                    <div class="mt40"><a class="fr mt5 green-btn2 pt5 pb5 pl30 pr30 font-16 ulib-r3" href="javascript:" onclick="$('#decorationDesign').show();">帮我设计</a></div>
+                </li>
+                <li class="bts pt15 pb15 pr20 clear">
+                	<div class="fl"><a href="#" target="_blank"><img src="upload/v-1.jpg" width="200" height="124" alt="" /></a></div>
+                    <div class="fl pl20 con-670">
+                    	<a class="mt5 font-18" href="#" target="_blank">古龙御景<span class="bg-orange ml5 pt1 pb1 pl5 pr5 font-14 color-white ulib-r3">集美</span></a>
+                        <div class="mt15 color-666">本设计方案由 天玺装饰 提供</div>
+                        <div class="color-666">本设计方案由 陈艳 设计</div>
+                        <div class="mt15 font-14">
+                            <span>二室</span>
+                            <span class="ml15">北欧</span>
+                            <span class="ml15 color-orange">12万-18万</span>
+                        </div>
+                    </div>
+                    <div class="mt40"><a class="fr mt5 green-btn2 pt5 pb5 pl30 pr30 font-16 ulib-r3" href="javascript:" onclick="$('#decorationDesign').show();">帮我设计</a></div>
+                </li>
+            </ul>
+            
+            <div class="home-pager pt40 pb20">
+                <a class="pager-lk" href="javascript:">上一页</a>
+                <a class="pager-lk active" href="javascript:">1</a>
+                <a class="pager-lk" href="javascript:">2</a>
+                <a class="pager-lk" href="javascript:">3</a>
+                <span class="ml5 mr5">...</span>
+                <a class="pager-lk" href="javascript:">26</a>
+                <a class="pager-lk" href="javascript:">下一页</a>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+<!--footer-->
+<div class="mt10 footer">
+	<div class="wrap">
+    	<div class="clear pt20 pb20">
+        	<dl class="fl ft-weixincode-dl clear">
+            	<dt class="fl"><img src="img/weixin-code.jpg" width="72" height="72" alt="小鱼家居" /></dt>
+                <dd>
+                	<div class="font-16">小鱼家居</div>
+                    <div class="mt5 font-14 color-666">扫码关注，获取省钱秘籍</div>
+                    <div class="font-14 color-666">48小时内回复您的装修问题</div>
+                </dd>
+            </dl>
+            <dl class="fl ft-weixincode-dl clear">
+            	<dt class="fl"><img src="img/weixin-code2.jpg" width="80" height="80" alt="居家地带" /></dt>
+                <dd>
+                	<div class="font-16">居家地带</div>
+                    <div class="mt5 font-14 color-666">扫码关注，</div>
+                    <div class="font-14 color-666">轻松打理日常居家生活</div>
+                </dd>
+            </dl>
+            <dl class="fl mt5 ft-qqservice">
+            	<dt class="font-16">QQ咨询</dt>
+                <dd class="mt5">
+                	<a href="http://wpa.qq.com/msgrd?v=3&amp;uin=2452614649&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="icon icon-qq"></i>
+                        <span class="font-14 color-666">小编玫子</span>
+                    </a>
+                    <a class="ml30" href="http://wpa.qq.com/msgrd?v=3&amp;uin=1768983798&amp;site=qq&amp;menu=yes" target="_blank">
+                        <i class="icon icon-qq"></i>
+                        <span class="font-14 color-666">小编麦芽</span>
+                    </a>
+                </dd>
+            </dl>
+            <dl class="mt5 fr">
+            	<dt class="font-16">商务合作</dt>
+                <dd class="mt5 font-14 color-666">139 5000 4249（卢先生）</dd>
+            </dl>
+        </div>
+        <div class="bts pt20 pb20 text-center color-999">Copyright © 2003-2016 小鱼网 版权所有，并保留所有权利。 闽公网安备35020302000108号 闽ICP备12013448号-2</div>
+    </div>
+</div>
+<!--end footer-->
+
+<!--装修设计申请-->
+<div id="decorationDesign" class="pop-cover yahei">
+    <div class="pop-wrap300">
+        <a class="pop-close2" href="javascript:" onclick="$('.pop-cover').hide();">×</a>
+        <div class="control-group">
+            <input class="reg-txt" type="text" value="">
+            <span class="inp-note" style="display: block;">您的姓名</span>
+        </div>
+        <div class="control-group">
+            <input class="reg-txt" type="text" value="">
+            <span class="inp-note">请输入手机号码</span>
+        </div>
+        <div class="control-group mt10">
+            <button type="submit" onclick="$('#decorationDesign').show();" class="reg-button yahei">获得方案</button>
+        </div>
+    </div>
+</div>
+<!--end 装修设计申请 -->
+
+</body>
+</html>
